@@ -7,6 +7,8 @@ class StockService:
 
     def findStock(self,ticker):
         try:
-            return StockWrapper(si.get_analysts_info(ticker))
+            print(StockWrapper(si.get_live_price(ticker)).stock)
+            print(StockWrapper(si.get_live_price(ticker)).last_access)
+            return StockWrapper(si.get_live_price(ticker))
         except:
             return print('hi')
