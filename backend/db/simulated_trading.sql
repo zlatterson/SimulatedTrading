@@ -3,7 +3,6 @@ DROP TABLE buy_sell_actions;
 DROP TABLE stocks;
 DROP TABLE users;
 
-CREATE TYPE currency AS ENUM ('USD', 'GBP', 'CAD');
 CREATE TYPE transaction_type AS ENUM ('buy', 'sell');
 CREATE TYPE call_put_type AS ENUM ('call', 'put');
 
@@ -11,7 +10,7 @@ CREATE TYPE call_put_type AS ENUM ('call', 'put');
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
     username VARCHAR(255),
-    name VARCHAR(255),
+    summary VARCHAR(255),
     money INT
 );
 

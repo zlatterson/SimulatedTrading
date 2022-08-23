@@ -1,9 +1,11 @@
 import unittest
 from models.stock import Stock
+from services.stock_service import StockService
 
-class TestStockWrapper(unittest.TestCase):
+class TestStock(unittest.TestCase):
     def setUp(self):
-        self.stock = Stock("DNN")
+        self.stock = StockService.make_stock("AMZN")
 
-    def test_stock_currency_can_only_be_enum(self):
-        self.stock()
+    def test_stock_can_be_made(self):
+        print(self.stock.current_price)
+        print(self.stock.fetch_price())
