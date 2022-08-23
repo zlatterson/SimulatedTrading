@@ -11,7 +11,10 @@ class StockService:
         try:
             if si.get_market_status() == "PRE":
                 return si.get_premarket_price(ticker)
-            else: return si.get_premarket_price(ticker)
+            elif si.get_market_status() == "POST":
+                return si.get_postmarket_price(ticker)
+            else: 
+                return si.get_live_price(ticker)
         except:
             return print('hi') 
 
