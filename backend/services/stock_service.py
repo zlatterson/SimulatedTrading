@@ -9,19 +9,18 @@ class StockService:
 
     def find_stock_price(ticker):
         try:
-            if si.get_market_status() == "PRE":
+            market_status = si.get_market_status()
+            if market_status == "PRE":
                 return si.get_premarket_price(ticker)
-            elif si.get_market_status() == "POST":
+            elif market_status == "POST":
                 return si.get_postmarket_price(ticker)
             else: 
                 return si.get_live_price(ticker)
         except:
-            return print('hi') 
+            return print('find_stock_price: error') 
 
     def make_stock(ticker):
-        try:
-            return Stock(ticker,si.get_company_info(ticker).loc["longBusinessSummary"].Value, StockService.find_stock_price(ticker))
-        except:
-            return print('hi')
+        return Stock(ticker,si.get_company_info(ticker).loc["longBusinessSummary"].Value, StockService.find_stock_price(ticker))
+
 
     # check if stock exists in db?
