@@ -1,3 +1,4 @@
+from time import sleep
 import unittest
 
 from models.call_put_option import CallPutOption
@@ -66,7 +67,8 @@ class TestCallPut(unittest.TestCase):
         print("__")
         print(user_google_call.pseudo_premium)
         self.assertGreater(money_before, self.user.money)
-    
+
+    @unittest.skip("test since contract class added")
     def test_can_get_pretty_accurate_premium(self):
         amazon_stock = StockService.make_stock("AMZN")
         amazon_call_contract = CallPutContractService.make_contract("AMZN220826C00070000",amazon_stock,"CALL")
@@ -74,3 +76,26 @@ class TestCallPut(unittest.TestCase):
         print("__")
         print("running pl", user_amazon_call.running_pl)
         print("%", user_amazon_call.running_pl_percentage)
+
+    @unittest.skip("test since contract class added")
+    def test_contract_refreshes(self):
+        amazon_stock = StockService.make_stock("AMZN")
+        amazon_call_contract = CallPutContractService.make_contract("AMZN220826C00070000",amazon_stock,"CALL")
+        user_amazon_call = CallPutOptionService.make_position(amazon_call_contract,"BUY",3,self.user)
+        print("__")
+        print(user_amazon_call.call_put_contract.current_c_price)
+        sleep(100)
+        user_amazon_call.call_put_contract.fetch_c_price()
+        print(user_amazon_call.call_put_contract.current_c_price)
+        # working
+
+    # @unittest.skip("test since contract class added")
+    def test_refreshes_position_value(self):
+        amazon_stock = StockService.make_stock("AMZN")
+        amazon_call_contract = CallPutContractService.make_contract("AMZN220826C00070000",amazon_stock,"CALL")
+        user_amazon_call = CallPutOptionService.make_position(amazon_call_contract,"BUY",3,self.user)
+        print("__")
+        print(user_amazon_call.running_pl)
+        user_amazon_call.call_put_contract.fetch_c_price()
+        amazon_call_contract.fetch_c_price()
+        print(user_amazon_call.running_pl)
