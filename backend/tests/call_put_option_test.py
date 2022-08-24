@@ -35,11 +35,18 @@ class TestCallPut(unittest.TestCase):
     def test_can_get_a_put_price(self):
         worst_put_in_history = CallPutOption("GOOGL220826P00070000", self.google_stock,1,"BUY","PUT",self.user)
         print(worst_put_in_history.calc_contract_simulated_value())
-
-    def test_can_get_call_put_valeu(self):
-        # worst_put_in_history = CallPutOption("GOOGL220826P00070000", self.google_stock,1,"BUY","PUT",self.user)
-        res = CallPutOptionService.indv_tester("GOOGL220826P00070000")
-        print(res)
+    
+    @unittest.skip("outdated test")
+    def test_can_create_call_position(self):
         google_stock = StockService.make_stock("GOOGL")
+        print("user money:", self.user.money)
         call_position = CallPutOptionService.make_position("GOOGL220826C00075000","BUY","CALL",google_stock,2,self.user)
-        print(call_position)
+        print("user money after purchase:", self.user.money)
+        print("bought contract price:", call_position.bought_contract_value)
+        self.assertTrue(call_position.bought_contract_value > 10.475)
+
+    # @unittest.skip("outdated test")
+    def test_cannot_create_position_without_enough_money(self):
+        google_stock = StockService.make_stock("GOOGL")
+        call_position = CallPutOptionService.make_position("GOOGL220826C00075000","BUY","CALL",google_stock,20,self.user)
+        self.assertEqual(call_position, None)
