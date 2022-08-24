@@ -3,6 +3,7 @@ import unittest
 from models.call_put_option import CallPutOption
 from models.stock import Stock
 from models.user import User
+from services.call_put_contract_service import CallPutContractService
 from services.call_put_option_service import CallPutOptionService
 from services.stock_service import StockService
 
@@ -42,11 +43,19 @@ class TestCallPut(unittest.TestCase):
         print("user money:", self.user.money)
         call_position = CallPutOptionService.make_position("GOOGL220826C00075000","BUY","CALL",google_stock,2,self.user)
         print("user money after purchase:", self.user.money)
-        print("bought contract price:", call_position.bought_contract_value)
-        self.assertTrue(call_position.bought_contract_value > 10.475)
+        print("bought contract price:", call_position.bought_c_price)
+        self.assertTrue(call_position.bought_c_price > 10.475)
 
-    # @unittest.skip("outdated test")
+    @unittest.skip("outdated test")
     def test_cannot_create_position_without_enough_money(self):
         google_stock = StockService.make_stock("GOOGL")
         call_position = CallPutOptionService.make_position("GOOGL220826C00075000","BUY","CALL",google_stock,20,self.user)
         self.assertEqual(call_position, None)
+    
+    # @unittest.skip("test since contract class added")
+    def test_cannot_create_position_without_enough_money(self):
+        google_stock = StockService.make_stock("GOOGL")
+        google_call_contract = CallPutContractService.make_contract("GOOGL220826C00055000",google_stock,"CALL")
+        print("user money before call: ",self.user.money)
+        user_google_call = CallPutOptionService.make_position(google_call_contract,"BUY",2,self.user)
+        print("user money after call: ", self.user.money)
