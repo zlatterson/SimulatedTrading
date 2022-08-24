@@ -52,10 +52,25 @@ class TestCallPut(unittest.TestCase):
         call_position = CallPutOptionService.make_position("GOOGL220826C00075000","BUY","CALL",google_stock,20,self.user)
         self.assertEqual(call_position, None)
     
-    # @unittest.skip("test since contract class added")
-    def test_cannot_create_position_without_enough_money(self):
+    @unittest.skip("test since contract class added")
+    def test_can_create_call_option(self):
         google_stock = StockService.make_stock("GOOGL")
         google_call_contract = CallPutContractService.make_contract("GOOGL220826C00055000",google_stock,"CALL")
-        print("user money before call: ",self.user.money)
-        user_google_call = CallPutOptionService.make_position(google_call_contract,"BUY",2,self.user)
+        money_before = self.user.money
+        print("user money before call: ",money_before)
+        user_google_call = CallPutOptionService.make_position(google_call_contract,"BUY",3,self.user)
         print("user money after call: ", self.user.money)
+        print(user_google_call.running_pl)
+        print(user_google_call.running_pl_percentage)
+        print(user_google_call.current_contracts_value)
+        print("__")
+        print(user_google_call.pseudo_premium)
+        self.assertGreater(money_before, self.user.money)
+    
+    def test_can_get_pretty_accurate_premium(self):
+        amazon_stock = StockService.make_stock("AMZN")
+        amazon_call_contract = CallPutContractService.make_contract("AMZN220826C00070000",amazon_stock,"CALL")
+        user_amazon_call = CallPutOptionService.make_position(amazon_call_contract,"BUY",3,self.user)
+        print("__")
+        print("running pl", user_amazon_call.running_pl)
+        print("%", user_amazon_call.running_pl_percentage)

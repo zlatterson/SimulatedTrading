@@ -26,7 +26,7 @@ class TestCallPutContract(unittest.TestCase):
         contract = CallPutContractService.make_contract("GOOGL220826C00055000",self.google_stock,"CALL")
         init_c = contract.current_contract_value
         print(init_c)
-        sleep(250)
+        sleep(1000)
         contract.fetch_c_price()
         updated_c = contract.current_contract_value
         print(updated_c)
