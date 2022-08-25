@@ -1,3 +1,4 @@
+from datetime import datetime
 from models.stock import Stock
 from models.user import User
 
@@ -7,7 +8,7 @@ class BuySellAction():
         self.buy_sell_type = buy_sell_type
         self.quantity = quantity
         self.bought_price = bought_price
-        self.timestamp = timestamp
+        self.history = [str(timestamp),{"Type":buy_sell_type,"Price":bought_price,"Quantity":quantity}]
         self.user = user
         self.id = id
 
@@ -40,12 +41,15 @@ class BuySellAction():
         """
         return (self.running_pl / self.quantity) / self.bought_price * 100
 
-    def close(self,sell_quantity=None):
+    def buy(self,buy_quantity):
+        from services.buy_sell_action_service import BuySellActionService
+        self.quantity += BuySellActionService.buy_order(self.stock,self.user,buy_quantity)
+        self.history.extend((str(datetime.now()),{"Type":"BUY","Price":self.stock.current_price,"Quantity":buy_quantity}))
+
+    def sell(self,sell_quantity=None):
         if sell_quantity==None:
             sell_quantity = self.quantity
-        print("sell quantity:",sell_quantity)
         if sell_quantity <= self.quantity:
             from services.buy_sell_action_service import BuySellActionService
-            self.quantity -= BuySellActionService.close_position(self.stock,self.user,sell_quantity)
-        else:
-            print("Not enough quantity")
+            self.quantity -= BuySellActionService.sell_order(self.stock,self.user,sell_quantity)
+            self.history.extend((str(datetime.now()),{"Type":"SELL","Price":self.stock.current_price,"Quantity":sell_quantity}))

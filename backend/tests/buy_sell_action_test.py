@@ -43,11 +43,22 @@ class TestBuySellAction(unittest.TestCase):
         position.close()
         print(self.user.money)
 
-    # @unittest.skip("market open dependent")
-    def test_can_close_quantity_on_position(self):
+    @unittest.skip("market open dependent")
+    def test_can_sell_by_quantity_on_position(self):
         print(self.user.money)
         dnn = StockService.make_stock("DNN")
         position = BuySellActionService.make_postion(dnn,20000,"BUY",self.user)
         dnn.current_price = 2
-        position.close(17000)
+        position.sell(17000)
+        print(position.history)
+        print(self.user.money)
+
+    def test_can_buy_by_quantity_on_position(self):
+        print(self.user.money)
+        dnn = StockService.make_stock("DNN")
+        position = BuySellActionService.make_postion(dnn,2000,"BUY",self.user)
+        dnn.current_price = 2
+        position.sell(1000)
+        position.buy(12345)
+        print(position.history)
         print(self.user.money)
