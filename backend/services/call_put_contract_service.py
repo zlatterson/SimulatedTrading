@@ -14,9 +14,11 @@ class CallPutContractService:
         return options.get_puts(ticker)
 
     def find_contract(contract_name):
+        # MarketService.market_open()
         return options.get_options_chain(contract_name)
     
     def make_contract(contract_name, stock, call_put_type):
+        # MarketService.market_open()
         contract = CallPutContractService.find_contract(contract_name)
         c_price = CallPutContractService.calc_c_simulated_price(contract)
         expire_date = contract["puts"].loc[0][1]
@@ -25,6 +27,5 @@ class CallPutContractService:
 
     # returns the midpoint between buy price and ask price
     def calc_c_simulated_price(contract):
-        # MarketService.market_open()
         return (contract["calls"].loc[2][1] + contract["calls"].loc[3][1]) / 2
     

@@ -60,5 +60,8 @@ class TestBuySellAction(unittest.TestCase):
         dnn.current_price = 2
         position.sell(1000)
         position.buy(12345)
+        dnn.current_price = 1.02
+        position.sell()
         print(position.history)
         print(self.user.money)
+        
