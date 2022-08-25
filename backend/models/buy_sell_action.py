@@ -43,6 +43,9 @@ class BuySellAction():
     def close(self,sell_quantity=None):
         if sell_quantity==None:
             sell_quantity = self.quantity
+        print("sell quantity:",sell_quantity)
         if sell_quantity <= self.quantity:
             from services.buy_sell_action_service import BuySellActionService
             self.quantity -= BuySellActionService.close_position(self.stock,self.user,sell_quantity)
+        else:
+            print("Not enough quantity")

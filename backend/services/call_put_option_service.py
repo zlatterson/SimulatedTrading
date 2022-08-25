@@ -23,7 +23,7 @@ class CallPutOptionService:
         return options.get_options_chain(contract_name)
     
     def make_position(contract:CallPutContract,buy_sell_type,n_contracts,user):
-        MarketService.market_open()
+        # MarketService.market_open()
         if buy_sell_type == "BUY":
             order_cost = contract.current_contract_value * n_contracts
             if user.money >= order_cost:

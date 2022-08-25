@@ -21,7 +21,7 @@ class TestCallPutContract(unittest.TestCase):
         contract = CallPutContractService.make_contract("GOOGL220826C00055000",self.google_stock,"CALL")
         self.assertEqual("2022-08-26",contract.expires)
     
-    # @unittest.skip("PASSES cumbersome test")
+    @unittest.skip("PASSES cumbersome test")
     def test_can_update_c_price(self):
         contract = CallPutContractService.make_contract("GOOGL220826C00055000",self.google_stock,"CALL")
         init_c = contract.current_contract_value

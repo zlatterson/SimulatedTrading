@@ -10,7 +10,7 @@ from services.market_service import MarketService
 class BuySellActionService:
 
     def make_postion(stock:Stock,quantity,buy_sell_type,user:User):
-        MarketService.market_open()
+        # MarketService.market_open()
         if buy_sell_type == "BUY":
             order_cost = stock.current_price * quantity
             if user.money >= order_cost:
@@ -21,6 +21,6 @@ class BuySellActionService:
 
 
     def close_position(stock:Stock,user:User,quantity=None):
-        MarketService.market_open()
+        # MarketService.market_open()
         user.money += stock.current_price * quantity
         return quantity

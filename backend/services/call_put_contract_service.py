@@ -25,6 +25,6 @@ class CallPutContractService:
 
     # returns the midpoint between buy price and ask price
     def calc_c_simulated_price(contract):
-        MarketService.market_open()
+        # MarketService.market_open()
         return (contract["calls"].loc[2][1] + contract["calls"].loc[3][1]) / 2
     

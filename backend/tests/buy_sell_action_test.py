@@ -49,5 +49,5 @@ class TestBuySellAction(unittest.TestCase):
         dnn = StockService.make_stock("DNN")
         position = BuySellActionService.make_postion(dnn,20000,"BUY",self.user)
         dnn.current_price = 2
-        position.close(300)
+        position.close(17000)
         print(self.user.money)
