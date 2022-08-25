@@ -11,13 +11,16 @@ class CallPutContract():
         self.k = k
         self.expires = expires
         self.current_c_price = current_c_price
-        self.current_contract_value = current_c_price * 100
         self.id = id
+
+    @property
+    def current_contract_value(self):
+        """Returns value of one contract
+        """
+        return self.current_c_price * 100
     
     def fetch_c_price(self):
         from services.call_put_contract_service import CallPutContractService
         updated_contract = CallPutContractService.find_contract(self.contract_name)
         updated_price = CallPutContractService.calc_c_simulated_price(updated_contract)
-        updated_price = 65
-        print(updated_price)
         self.current_c_price = updated_price

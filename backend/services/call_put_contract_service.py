@@ -3,12 +3,10 @@ import yahoo_fin.stock_info as si
 import pandas as pd
 from models.call_put_contract import CallPutContract
 from models.call_put_option import CallPutOption
+from services.market_service import MarketService
 
 class CallPutContractService:
 
-    def __init__(self,ticker):
-        self.ticker = ticker
-    
     def find_calls(ticker):
         return options.get_calls(ticker)
 
@@ -27,7 +25,6 @@ class CallPutContractService:
 
     # returns the midpoint between buy price and ask price
     def calc_c_simulated_price(contract):
-        if si.get_market_status() != "REGULAR":
-            raise Exception("Not open")
+        MarketService.market_open()
         return (contract["calls"].loc[2][1] + contract["calls"].loc[3][1]) / 2
     

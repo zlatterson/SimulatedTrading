@@ -4,9 +4,6 @@ import pandas as pd
 
 class StockService:
 
-    def __init__(self,ticker):
-        self.ticker = ticker
-
     def find_stock_price(ticker):
         try:
             market_status = si.get_market_status()
