@@ -53,6 +53,7 @@ class TestBuySellAction(unittest.TestCase):
         print(position.history)
         print(self.user.money)
 
+    @unittest.skip("market open dependent")
     def test_can_buy_by_quantity_on_position(self):
         print(self.user.money)
         dnn = StockService.make_stock("DNN")
@@ -62,6 +63,68 @@ class TestBuySellAction(unittest.TestCase):
         position.buy(12345)
         dnn.current_price = 1.02
         position.sell()
-        print(position.history)
-        print(self.user.money)
-        
+        position.buy(100)
+        position.buy(100)
+        position.buy(23)
+        position.sell(300)
+        print(position.quantity)
+        # print(position.history)
+        # print(self.user.money)
+
+    @unittest.skip("market open dependent")
+    def test_cannot_sell_more_stock_than_owned(self):
+        dnn = StockService.make_stock("DNN")
+        position = BuySellActionService.make_postion(dnn,2000,"BUY",self.user)
+        dnn.current_price = 2
+        position.sell()
+        position.buy(100)
+        position.buy(100)
+        position.buy(23)
+        position.sell(300)
+        self.assertEqual(223, position.quantity)
+
+    @unittest.skip("market open dependent")
+    def test_can_sell_less_stock_than_owned(self):
+        dnn = StockService.make_stock("DNN")
+        position = BuySellActionService.make_postion(dnn,2000,"BUY",self.user)
+        dnn.current_price = 2
+        position.sell()
+        position.buy(100)
+        position.buy(100)
+        position.buy(23)
+        position.sell(200)
+        self.assertEqual(23, position.quantity)
+
+    @unittest.skip("market open dependent")
+    def test_can_sell_less_stock_than_owned(self):
+        dnn = StockService.make_stock("DNN")
+        position = BuySellActionService.make_postion(dnn,2000,"BUY",self.user)
+        dnn.current_price = 2
+        position.sell()
+        position.buy(100)
+        position.buy(100)
+        position.buy(23)
+        position.sell(200)
+        self.assertEqual(23, position.quantity)
+
+    # @unittest.skip("market open dependent")
+    def test(self):
+        dnn = StockService.make_stock("DNN")
+        position = BuySellActionService.make_postion(dnn,2000,"BUY",self.user)
+        dnn.current_price = 2
+        position.sell()
+        position.buy(100)
+        position.buy(100)
+        position.buy(23)
+        position.sell(200)
+        print("running p/l:", position.running_pl)
+        print("average price:", position.average_price)
+        dnn.current_price = 1.54
+        print("running p/l:", position.running_pl)
+        print("average price:", position.average_price)
+        position.buy(12000)
+        print("average price:", position.average_price)
+        dnn.current_price = 3
+        print("running p/l:", position.running_pl)
+        print("average price:", position.average_price)
+        # self.assertEqual(23, position.quantity)
