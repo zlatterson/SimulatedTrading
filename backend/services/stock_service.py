@@ -17,7 +17,7 @@ class StockService:
             return print('find_stock_price: error') 
 
     def make_stock(ticker):
-        return Stock(ticker,si.get_company_info(ticker).loc["longBusinessSummary"].Value, StockService.find_stock_price(ticker))
+        return Stock(ticker,si.get_company_info(ticker).loc["longBusinessSummary"].Value[:75]+"...", StockService.find_stock_price(ticker))
 
 
     # check if stock exists in db?

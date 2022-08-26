@@ -1,5 +1,5 @@
 class User:
-    def __init__(self,username,name,money_paid_in,money,id=None):
+    def __init__(self,username:str,name:str,money_paid_in:float,money:float,id=None):
         self.username = username
         self.name = name
         self.money_paid_in = money_paid_in
@@ -8,9 +8,6 @@ class User:
         self.id = id
 
 
-
-    def fetch_asset_value(self):
-        pass
     # @property 
     # def money_available(self):
     #     profit = self.money_paid_in - self.money
