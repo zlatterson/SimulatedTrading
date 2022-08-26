@@ -8,9 +8,9 @@ CREATE TABLE users(
     id SERIAL PRIMARY KEY,
     username VARCHAR(255),
     name VARCHAR(255),
-    currency VARCHAR(255),
     money_paid_in FLOAT,
-    money FLOAT
+    money FLOAT,
+    currency VARCHAR(255)
 );
 
 CREATE TABLE stocks(

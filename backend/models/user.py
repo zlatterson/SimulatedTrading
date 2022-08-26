@@ -1,11 +1,13 @@
 class User:
-    def __init__(self,username,name,money_paid_in,money=None,id=None):
+    def __init__(self,username,name,money_paid_in,money,id=None):
         self.username = username
         self.name = name
-        self.currency = "USD"
         self.money_paid_in = money_paid_in
-        self.money = money_paid_in
+        self.money = money
+        self.currency = "USD"
         self.id = id
+
+
 
     def fetch_asset_value(self):
         pass
