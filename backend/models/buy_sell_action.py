@@ -48,20 +48,15 @@ class BuySellAction():
         return (self.running_pl / self.quantity) / self.average_price * 100
 
     def calc_new_average_price(self,buy_quantity):
-        old_quantity = self.quantity
-        old_price = self.average_price
-        new_quantity = buy_quantity
-        new_price = self.stock.current_price
-        return ((old_price * old_quantity) + (new_price * new_quantity)) / (old_quantity + new_quantity)
-    
+        return ((self.average_price * self.quantity) + (self.stock.current_price * buy_quantity)) / (self.quantity + buy_quantity)
     
     def buy(self,buy_quantity):
         potential_average_price = self.calc_new_average_price(buy_quantity)
         from services.buy_sell_action_service import BuySellActionService
         self.quantity += BuySellActionService.buy_order(self.stock,self.user,buy_quantity)
-        self.history.extend((str(datetime.now()),{"Type":"BUY","Price":self.stock.current_price,"Quantity":buy_quantity}))
         self.average_price = potential_average_price
-# calc new bought price
+        self.invoice("BUY",buy_quantity)
+
 
     def sell(self,sell_quantity=None):
         if sell_quantity==None:
@@ -69,4 +64,7 @@ class BuySellAction():
         if sell_quantity <= self.quantity:
             from services.buy_sell_action_service import BuySellActionService
             self.quantity -= BuySellActionService.sell_order(self.stock,self.user,sell_quantity)
-            self.history.extend((str(datetime.now()),{"Type":"SELL","Price":self.stock.current_price,"Quantity":sell_quantity}))
+            self.invoice("SELL",sell_quantity)
+    
+    def invoice(self,transaction_type,quantity):
+        self.history.extend((str(datetime.now()),{"Type":transaction_type,"Stock Price":self.stock.current_price,"Quantity":quantity}))

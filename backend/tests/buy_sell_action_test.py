@@ -127,4 +127,5 @@ class TestBuySellAction(unittest.TestCase):
         dnn.current_price = 3
         print("running p/l:", position.running_pl)
         print("average price:", position.average_price)
+        print(position.history)
         # self.assertEqual(23, position.quantity)
