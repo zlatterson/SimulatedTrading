@@ -15,3 +15,4 @@ class TestUser(unittest.TestCase):
         print("initial money:", self.user.money)
         position = BuySellActionService.make_postion(self.GOOGL,20,"BUY",self.user)
         print("current money:", self.user.money)
+        print(position.average_price)
