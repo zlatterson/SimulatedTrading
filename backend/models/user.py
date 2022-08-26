@@ -5,3 +5,6 @@ class User:
         self.currency = "USD"
         self.money = money
         self.id = id
+
+    def fetch_asset_value(self):
+        pass

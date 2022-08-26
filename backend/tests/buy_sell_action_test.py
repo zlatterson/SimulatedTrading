@@ -107,8 +107,9 @@ class TestBuySellAction(unittest.TestCase):
         position.sell(200)
         self.assertEqual(23, position.quantity)
 
-    # @unittest.skip("market open dependent")
+    @unittest.skip("market open dependent")
     def test(self):
+        print("user money:",self.user.money)
         dnn = StockService.make_stock("DNN")
         position = BuySellActionService.make_postion(dnn,2000,"BUY",self.user)
         dnn.current_price = 2
@@ -128,4 +129,21 @@ class TestBuySellAction(unittest.TestCase):
         print("running p/l:", position.running_pl)
         print("average price:", position.average_price)
         print(position.history)
+        position.sell()
+        print("user money:",self.user.money)
         # self.assertEqual(23, position.quantity)
+        
+    @unittest.skip("FAILS: TODO")
+    def test_average_price_should_be_0_when_all_sold(self):
+        dnn = StockService.make_stock("DNN")
+        position = BuySellActionService.make_postion(dnn,2000,"BUY",self.user)
+        dnn.current_price = 5
+        position.sell()
+        self.assertEqual(0,position.average_price)
+
+    def test_average_price_should_reflect_sell(self):
+        dnn = StockService.make_stock("DNN")
+        position = BuySellActionService.make_postion(dnn,2000,"BUY",self.user)
+        dnn.current_price = 5
+        position.sell(1000)
+        print("avg price:",position.average_price)

@@ -1,16 +1,9 @@
 # from db.run_sql import run_sql
-# from models.user import User
-
-# user = User("George100","George Smith",10000)
-# def save(user):
-#     sql = "INSERT INTO users (username,name,money) VALUES (%s,%s,%s) RETURNING id"
-#     values = [user.username, user.name, user.money]
-#     results = run_sql(sql,values)
-#     user.id = results[0]['id']
-#     return user
-# save(user)
+from models.user import User
+import repositories.user_repository as user_repository
+user = User("George100","George Smith",102103)
 
 from models.stock import Stock
 
-
-# print(Stock(si.get_premarket_price(ticker))
+user_repository.save(user)
+print(user.id)
