@@ -14,7 +14,8 @@ class BuySellAction():
         self.buy_sell_type = buy_sell_type
         self.quantity = quantity
         self.average_price = init_price
-        self.history = [str(timestamp),{"Type":buy_sell_type,"Price":init_price,"Quantity":quantity}]
+        self.timestamp = str(timestamp)
+        self.last_action = f'{str(timestamp)} {buy_sell_type} {str(quantity)} {str(self.average_price)}' #[str(timestamp),{"Type":buy_sell_type,"Price":init_price,"Quantity":quantity}]
         self.user = user
         self.id = id
 
@@ -72,6 +73,6 @@ class BuySellAction():
             self.invoice("SELL",sell_quantity)
     
     def invoice(self,transaction_type,quantity):
-        """Sets history to extend new data
+        """Sets last_action to new data
         """
-        self.history.extend((str(datetime.now()),{"Type":transaction_type,"Stock Price":self.stock.current_price,"Quantity":quantity}))
+        self.last_action = f'{str(datetime.now())} {transaction_type} {str(quantity)} {str(self.stock.current_price)}'

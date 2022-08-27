@@ -27,7 +27,8 @@ CREATE TABLE buy_sell_actions (
     buy_sell_type VARCHAR(255),
     quantity INT,
     average_price FLOAT,
-    history VARCHAR(255)
+    timestamp VARCHAR(255),
+    last_action VARCHAR(255)
 );
 
 CREATE TABLE call_put_contracts (

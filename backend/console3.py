@@ -8,25 +8,21 @@ from pprint import pprint
 
 import repositories.user_repository as user_repository
 import repositories.stock_repository as stock_repository
+import repositories.buy_sell_action_repository as buy_sell_action_repository
 
 user_repository.delete_all()
 stock_repository.delete_all()
+# buy_sell_action_repository.delete_all()
 
-user = User("thinkingobject1","Jimmy",1100.123,1100.123)
+user = User("william100","William",32001,32001)
 user_repository.save(user)
 
-
 google_stock = StockService.make_stock("GOOGL")
-pprint(vars(google_stock))
+# google_stock.fetch_price()
 stock_repository.save(google_stock)
 
 
-all_stocks = stock_repository.select_all()
-for st in all_stocks:
-    st.fetch_price()
-    pprint(vars(st))
-    print(st.id, st.current_price)
 
-# stocky = stock_repository.select(39)
-# stocky.fetch_price()
-# print(stocky.current_price)
+position = BuySellActionService.make_postion(google_stock,20,"BUY",user)
+pprint(vars(position))
+buy_sell_action_repository.save(position)

@@ -11,6 +11,8 @@ class BuySellActionService:
 
     def make_postion(stock:Stock,quantity,buy_sell_type,user:User):
         # MarketService.market_open()
+        if stock.current_price == None:
+            stock.fetch_price()
         if buy_sell_type == "BUY":
             order_cost = stock.current_price * quantity
             if user.money >= order_cost:
