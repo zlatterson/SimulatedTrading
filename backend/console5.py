@@ -43,5 +43,5 @@ call_put_option_repository.save(call_position)
 specifc_call_pos = call_put_option_repository.select(1)
 pprint(vars(specifc_call_pos))
 
-specifc_call_pos.n_contracts = 12301
-call_put_option_repository.update(specifc_call_pos)
+# specifc_call_pos.n_contracts = 12301
+# call_put_option_repository.update(specifc_call_pos)
