@@ -1,47 +1,52 @@
 DROP TABLE call_put_options;
+DROP TABLE call_put_contracts;
 DROP TABLE buy_sell_actions;
 DROP TABLE stocks;
 DROP TABLE users;
 
-CREATE TYPE transaction_type AS ENUM ('buy', 'sell');
-CREATE TYPE call_put_type AS ENUM ('call', 'put');
-
-
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
     username VARCHAR(255),
-    summary VARCHAR(255),
-    money INT
+    name VARCHAR(255),
+    money_paid_in FLOAT,
+    money FLOAT,
+    currency VARCHAR(255)
 );
 
 CREATE TABLE stocks(
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255),
     ticker VARCHAR(255),
-    currency_used currency,
+    summary VARCHAR(255),
+    currency VARCHAR(255)
 );
 
 CREATE TABLE buy_sell_actions (
     id SERIAL PRIMARY KEY,
     user_id SERIAL REFERENCES users(id) ON DELETE CASCADE,
-    stock_id SERIAL REFERENCES items(id) ON DELETE CASCADE,
-    action_used action,
-    price FLOAT,
-    timestamp DATETIME
+    stock_id SERIAL REFERENCES stocks(id) ON DELETE CASCADE,
+    buy_sell_type VARCHAR(255),
+    quantity INT,
+    average_price FLOAT,
+    timestamp VARCHAR(255),
+    last_action VARCHAR(255)
+);
+
+CREATE TABLE call_put_contracts (
+    id SERIAL PRIMARY KEY,
+    stock_id SERIAL REFERENCES stocks(id) ON DELETE CASCADE,
+    contract_name VARCHAR(255),
+    call_put_type VARCHAR(255),
+    k FLOAT,
+    expires VARCHAR(255)
 );
 
 CREATE TABLE call_put_options (
     id SERIAL PRIMARY KEY,
     user_id SERIAL REFERENCES users(id) ON DELETE CASCADE,
-    stock_id SERIAL REFERENCES items(id) ON DELETE CASCADE,
-    action_used action,
-    call_put_type call_put_type,
-    timestamp DATETIME,
-    current_stock_price FLOAT,
-    exercise_price FLOAT,
-    value_of_cnd FLOAT,
-    natural_logarithm FLOAT,
-    risk_free_rate FLOAT,
-    expected_term FLOAT,
-    expected_volatility FLOAT
+    call_put_contract_id SERIAL REFERENCES call_put_contracts(id) ON DELETE CASCADE,
+    buy_sell_type VARCHAR(255),
+    n_contracts INT,
+    bought_c_price FLOAT,
+    bought_contracts_value FLOAT,
+    timestamp VARCHAR(255)
 );

@@ -7,11 +7,11 @@ def run_sql(sql, values = None):
 
     try:
         conn=psycopg2.connect("dbname='simulated_trading'")
-        cur = conn.cursor(cursor_factory=ext.DictCursor)
+        cur = conn.cursor(cursor_factory=ext.DictCursor)   
         cur.execute(sql, values)
         conn.commit()
         results = cur.fetchall()
-        cur.close()
+        cur.close()           
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
     finally:
