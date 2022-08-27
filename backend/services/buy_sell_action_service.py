@@ -17,7 +17,8 @@ class BuySellActionService:
             order_cost = stock.current_price * quantity
             if user.money >= order_cost:
                 user.money -= order_cost
-                return BuySellAction(stock,stock.current_price,quantity,buy_sell_type,datetime.now(),user)
+                last_action = BuySellActionService.invoice(buy_sell_type,quantity,stock)
+                return BuySellAction(stock,stock.current_price,quantity,buy_sell_type,datetime.now(),last_action,user)
             else:
                 raise Exception("Not enough money")
 
@@ -35,3 +36,6 @@ class BuySellActionService:
             return quantity
         else:
             raise Exception("Not enough money")
+
+    def invoice(transaction_type,quantity,stock):
+        return f'{str(datetime.now())} {transaction_type} {str(quantity)} {str(stock.current_price)}'

@@ -21,7 +21,7 @@ def select_all():
     for row in results:
         user = user_repository.select(row["user_id"])
         stock = stock_repository.select(row["stock_id"])
-        buy_sell_action = BuySellAction(stock,row["average_price"],row["quantity"],row["buy_sell_type"],row["timestamp"],user,row["id"])
+        buy_sell_action = BuySellAction(stock,row["average_price"],row["quantity"],row["buy_sell_type"],row["timestamp"],row["last_action"],user,row["id"])
         buy_sell_actions.append(buy_sell_action)
     return buy_sell_actions
 
@@ -32,7 +32,7 @@ def select(id):
     if result is not None:
         user = user_repository.select(result["user_id"])
         stock = stock_repository.select(result["stock_id"])
-        buy_sell_action = BuySellAction(stock,result["average_price"],result["quantity"],result["buy_sell_type"],result["timestamp"],user,result["id"])
+        buy_sell_action = BuySellAction(stock,result["average_price"],result["quantity"],result["buy_sell_type"],result["timestamp"],result["last_action"],user,result["id"])
     return buy_sell_action
 
 def update(buy_sell_action):

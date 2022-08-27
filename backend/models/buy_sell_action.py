@@ -9,13 +9,13 @@ class BuySellAction():
     Add funtionality to dynamically change average price
     """
     
-    def __init__(self,stock:Stock,init_price:float,quantity:int,buy_sell_type:str,timestamp,user:User,id=None):
+    def __init__(self,stock:Stock,init_price:float,quantity:int,buy_sell_type:str,timestamp,last_action,user:User,id=None):
         self.stock = stock
         self.buy_sell_type = buy_sell_type
         self.quantity = quantity
         self.average_price = init_price
         self.timestamp = str(timestamp)
-        self.last_action = f'{str(timestamp)} {buy_sell_type} {str(quantity)} {str(self.average_price)}' #[str(timestamp),{"Type":buy_sell_type,"Price":init_price,"Quantity":quantity}]
+        self.last_action = last_action
         self.user = user
         self.id = id
 
@@ -62,7 +62,8 @@ class BuySellAction():
         from services.buy_sell_action_service import BuySellActionService
         self.quantity += BuySellActionService.buy_order(self.stock,self.user,buy_quantity)
         self.average_price = potential_average_price
-        self.invoice("BUY",buy_quantity)
+        self.last_action = BuySellActionService.invoice("BUY",buy_quantity,self.stock)
+
 
     def sell(self,sell_quantity=None):
         """Sets quantity to subtract sell quantity.
@@ -72,9 +73,4 @@ class BuySellAction():
         if sell_quantity <= self.quantity:
             from services.buy_sell_action_service import BuySellActionService
             self.quantity -= BuySellActionService.sell_order(self.stock,self.user,sell_quantity)
-            self.invoice("SELL",sell_quantity)
-    
-    def invoice(self,transaction_type,quantity):
-        """Sets last_action to new data
-        """
-        self.last_action = f'{str(datetime.now())} {transaction_type} {str(quantity)} {str(self.current_price)}'
+            self.last_action = BuySellActionService.invoice("SELL",sell_quantity,self.stock)

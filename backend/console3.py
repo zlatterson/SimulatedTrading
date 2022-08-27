@@ -32,8 +32,9 @@ stock_repository.update(found)
 
 specifc_bsa = buy_sell_action_repository.select(1)
 pprint(vars(specifc_bsa))
+pprint(vars(position))
 specifc_bsa.stock.current_price = 3000
-# specifc_bsa.sell()
+specifc_bsa.sell()
 specifc_bsa.buy(2)
 user_repository.update(specifc_bsa.user)
 print(specifc_bsa.average_price)
@@ -44,5 +45,5 @@ slect = buy_sell_action_repository.select(1)
 pprint(vars(slect))
 pprint(vars(specifc_bsa))
 
-user1 = user_repository.select(1)
-print(user1.money, user1.money_paid_in)
+# user1 = user_repository.select(1)
+# print(user1.money, user1.money_paid_in)
