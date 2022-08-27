@@ -23,7 +23,8 @@ stock_repository.save(google_stock)
 
 
 found = stock_repository.select(1)
-
+found.current_price = 114
+stock_repository.update(found)
 position = BuySellActionService.make_postion(found,20,"BUY",user)
 buy_sell_action_repository.save(position)
 
@@ -34,16 +35,18 @@ specifc_bsa = buy_sell_action_repository.select(1)
 pprint(vars(specifc_bsa))
 pprint(vars(position))
 specifc_bsa.stock.current_price = 3000
-specifc_bsa.sell()
 specifc_bsa.buy(2)
+# specifc_bsa.sell(19)
+
 user_repository.update(specifc_bsa.user)
 print(specifc_bsa.average_price)
 print(specifc_bsa.current_price)
 print(specifc_bsa.quantity)
 buy_sell_action_repository.update(specifc_bsa)
 slect = buy_sell_action_repository.select(1)
-pprint(vars(slect))
+# pprint(vars(slect))
 pprint(vars(specifc_bsa))
+print(specifc_bsa.running_pl_percentage)
 
 # user1 = user_repository.select(1)
 # print(user1.money, user1.money_paid_in)

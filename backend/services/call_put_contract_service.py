@@ -23,7 +23,7 @@ class CallPutContractService:
         c_price = CallPutContractService.calc_c_simulated_price(contract)
         expire_date = contract["puts"].loc[0][1]
         strike_price = contract["calls"].loc[4][1]
-        return CallPutContract(contract_name,stock,call_put_type,c_price,strike_price,expire_date)
+        return CallPutContract(contract_name,stock,call_put_type,strike_price,expire_date,c_price)
 
     # returns the midpoint between buy price and ask price
     def calc_c_simulated_price(contract):

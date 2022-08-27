@@ -18,7 +18,7 @@ class BuySellAction():
         self.last_action = last_action
         self.user = user
         self.id = id
-
+    
     @property
     def current_price(self):
         """Gets the live price from Stock.
@@ -54,7 +54,7 @@ class BuySellAction():
         """Returns new average price for buy quantity.
         """
         return ((self.average_price * self.quantity) + (self.current_price * buy_quantity)) / (self.quantity + buy_quantity)
-
+    
     def buy(self,buy_quantity):
         """Sets quantity to add buy quantity.
         """
