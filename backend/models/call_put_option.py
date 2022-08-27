@@ -5,7 +5,7 @@ import pandas as pd
 from models.user import User
 
 class CallPutOption():
-    def __init__(self,call_put_contract:CallPutContract,n_contracts:int,bought_c_price:float,bought_contracts_value:float,timestamp,user:User,id=None,buy_sell_type:str=None):
+    def __init__(self,call_put_contract:CallPutContract,buy_sell_type:str,n_contracts:int,bought_c_price:float,bought_contracts_value:float,timestamp,user:User,id=None):
         self.call_put_contract = call_put_contract
         self.buy_sell_type = buy_sell_type
         self.n_contracts = n_contracts

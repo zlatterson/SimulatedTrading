@@ -31,9 +31,9 @@ def select(id):
         call_put_contract = CallPutContract(result["contract_name"],stock,result["call_put_type"],result["k"],result["expires"],result["id"])
     return call_put_contract
 
-def update(buy_sell_action):
-    sql = "UPDATE buy_sell_actions SET (user_id, stock_id, buy_sell_type, quantity, average_price, timestamp, last_action) = (%s,%s,%s,%s,%s,%s,%s) WHERE id = %s"
-    values = [buy_sell_action.user.id, buy_sell_action.stock.id, buy_sell_action.buy_sell_type,buy_sell_action.quantity,buy_sell_action.average_price, buy_sell_action.timestamp, buy_sell_action.last_action,buy_sell_action.id]
+def update(call_put_contract):
+    sql = "UPDATE call_put_contracts SET (stock_id, contract_name, call_put_type, k, expires) = (%s,%s,%s,%s,%s) WHERE id = %s"
+    values = [call_put_contract.stock.id, call_put_contract.contract_name, call_put_contract.call_put_type,call_put_contract.k,call_put_contract.expires,call_put_contract.id]
     run_sql(sql, values)
 
 def delete_all():

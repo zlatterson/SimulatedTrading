@@ -35,6 +35,13 @@ call_position = CallPutOptionService.make_position(googl_call,"BUY",3,jimmy)
 pprint(vars(call_position))
 call_put_option_repository.save(call_position)
 
-all_call_poss = call_put_option_repository.select_all()
-for c in all_call_poss:
-    pprint(vars(c))
+# all_call_poss = call_put_option_repository.select_all()
+# for c in all_call_poss:
+#     pprint(vars(c))
+# pprint(vars(call_position))
+
+specifc_call_pos = call_put_option_repository.select(1)
+pprint(vars(specifc_call_pos))
+
+specifc_call_pos.n_contracts = 12301
+call_put_option_repository.update(specifc_call_pos)

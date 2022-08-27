@@ -44,6 +44,7 @@ CREATE TABLE call_put_options (
     id SERIAL PRIMARY KEY,
     user_id SERIAL REFERENCES users(id) ON DELETE CASCADE,
     call_put_contract_id SERIAL REFERENCES call_put_contracts(id) ON DELETE CASCADE,
+    buy_sell_type VARCHAR(255),
     n_contracts INT,
     bought_c_price FLOAT,
     bought_contracts_value FLOAT,
