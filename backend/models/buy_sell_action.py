@@ -23,6 +23,8 @@ class BuySellAction():
     def current_price(self):
         """Gets the live price from Stock.
         """
+        if self.stock.current_price == None:
+            self.stock.fetch_price()
         return self.stock.current_price
 
     @property
@@ -51,7 +53,7 @@ class BuySellAction():
     def calc_new_average_price(self,buy_quantity):
         """Returns new average price for buy quantity.
         """
-        return ((self.average_price * self.quantity) + (self.stock.current_price * buy_quantity)) / (self.quantity + buy_quantity)
+        return ((self.average_price * self.quantity) + (self.current_price * buy_quantity)) / (self.quantity + buy_quantity)
 
     def buy(self,buy_quantity):
         """Sets quantity to add buy quantity.
@@ -75,4 +77,4 @@ class BuySellAction():
     def invoice(self,transaction_type,quantity):
         """Sets last_action to new data
         """
-        self.last_action = f'{str(datetime.now())} {transaction_type} {str(quantity)} {str(self.stock.current_price)}'
+        self.last_action = f'{str(datetime.now())} {transaction_type} {str(quantity)} {str(self.current_price)}'
