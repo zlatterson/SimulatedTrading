@@ -4,15 +4,23 @@ import pandas as pd
 
 class StockService:
 
+
     def find_stock_price(ticker):
+        ticker_prices = []
         try:
             market_status = si.get_market_status()
             if market_status == "PRE":
-                return si.get_premarket_price(ticker)
+                price = si.get_premarket_price(ticker)
+                ticker_prices.append({ticker:price})
+                return price
             elif market_status == "POST":
-                return si.get_postmarket_price(ticker)
+                price = si.get_premarket_price(ticker)
+                ticker_prices.append({ticker:price})
+                return price
             else: 
-                return si.get_live_price(ticker)
+                price = si.get_live_price(ticker)
+                ticker_prices.append({ticker:price})
+                return price
         except:
             return print('find_stock_price: error') 
 
