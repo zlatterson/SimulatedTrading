@@ -9,7 +9,7 @@ class BuySellAction():
     Add funtionality to dynamically change average price
     """
     
-    def __init__(self,stock:Stock,init_price:float,quantity:int,buy_sell_type:str,timestamp,last_action,user:User,id=None):
+    def __init__(self,stock:Stock,init_price:float,quantity:int,buy_sell_type:str,timestamp,last_action,user:User,id=None,score=None):
         self.stock = stock
         self.buy_sell_type = buy_sell_type
         self.quantity = quantity
@@ -18,6 +18,7 @@ class BuySellAction():
         self.last_action = last_action
         self.user = user
         self.id = id
+        self.score = score
     
     @property
     def current_price(self):

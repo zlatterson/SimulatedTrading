@@ -1,24 +1,37 @@
-import React,{ useState, useEffect } from "react";
-import {all_users} from '../services/UserService'
+import React,{useState, useEffect} from 'react';
+import UserList from '../components/UserList';
+import {showUsers, showUser, showUserBuySellActions} from "../services/UserService";
 
-function UserContainer() {
-    const [username, setUsername] = useState("");
-    const [name, setName] = useState("");
-    const [moneyPaidIn, setMoneyPaidIn] = useState("");
+function HomeContainer() {
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [users, setUsers] = useState([])
+  // const [user, setUser] = useState([])
 
-    const [allUsers, setAllUsers] = useState[[]]
+  const [selectedUserId,setSelectedUserId] = useState(null)
+  const [selectedUser, setSelectedUser] = useState(null)
 
-    useEffect(()=>{
-      all_users().then((result)=>{
-        setAllUsers(result)
-      })
-  }, []);
+  useEffect(()=>{
+    showUsers().then((result)=>{
+    setUsers(result)
+    })
+    setIsLoaded(true)
+}, []);
+
+useEffect(()=>{
+  if(!isLoaded){
+    return
+  }
+  showUserBuySellActions(selectedUserId).then((result)=>{
+  setSelectedUser(result)
+  })
+}, [selectedUserId]);
 
   return (
-    <>
-    users: {allUsers}
-    </>
+<div>
+  {users.Modules}
+  <UserList users={users} setSelectedUserId={setSelectedUserId}/>
+</div>
   );
 }
-
-export default UserContainer;
+// setSelectedUser={setSelectedUser} selectedUser={selectedUser}
+export default HomeContainer;

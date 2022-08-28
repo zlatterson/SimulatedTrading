@@ -21,6 +21,11 @@ call_put_option_repository.delete_all()
 
 user = User("Jimmy120","Jimmy",200100.123,200100.123)
 user_repository.save(user)
+
+user_repository.save(User("Martin500","Martin M",103.2,103.2))
+user_repository.save(User("James400","James M",99.2,99.2))
+
+
 jimmy = user_repository.select(1)
 # _______
 
