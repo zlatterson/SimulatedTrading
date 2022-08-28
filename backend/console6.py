@@ -9,12 +9,14 @@ from pprint import pprint
  
 import repositories.user_repository as user_repository
 import repositories.stock_repository as stock_repository
+import repositories.buy_sell_action_repository as buy_sell_action_repository
 import repositories.call_put_contract_repository as call_put_contract_repository
 import repositories.call_put_option_repository as call_put_option_repository
 
 user_repository.delete_all()
 stock_repository.delete_all()
 call_put_contract_repository.delete_all()
+buy_sell_action_repository.delete_all()
 call_put_option_repository.delete_all()
 
 user = User("Jimmy120","Jimmy",200100.123,200100.123)
@@ -26,22 +28,32 @@ stock_repository.save(stock)
 googl = stock_repository.select(1)
 googl.fetch_price()
 
-call = CallPutContractService.make_contract("GOOGL220826C00055000",googl,"CALL")
-call_put_contract_repository.save(call)
-googl_call = call_put_contract_repository.select(1)
-googl_call.fetch_c_price()
+position = BuySellActionService.make_postion(googl,20,"BUY",user)
+buy_sell_action_repository.save(position)
 
-call_position = CallPutOptionService.make_position(googl_call,"BUY",3,jimmy)
-pprint(vars(call_position))
-call_put_option_repository.save(call_position)
 
-# all_call_poss = call_put_option_repository.select_all()
-# for c in all_call_poss:
-#     pprint(vars(c))
-# pprint(vars(call_position))
+# MESS DATA IGNORE
+user2 = User("Danny1","Danny",100000,100000)
+user_repository.save(user2)
+danny = user_repository.select(2)
 
-specifc_call_pos = call_put_option_repository.select(1)
-pprint(vars(specifc_call_pos))
+position2 = BuySellActionService.make_postion(googl,20,"BUY",danny)
+buy_sell_action_repository.save(position2)
 
-# specifc_call_pos.n_contracts = 12301
-# call_put_option_repository.update(specifc_call_pos)
+# 
+position = buy_sell_action_repository.select(1)
+position.current_price
+position.sell(3)
+buy_sell_action_repository.update(position)
+
+googl.current_price = 300
+stock_repository.update(googl)
+
+res = user_repository.buy_sell_actions(jimmy)
+pprint(vars(res[0].stock))
+res[0].stock.fetch_price()
+res[0].stock.current_price = 0
+pprint(vars(res[0].stock))
+print("running_pl: ",res[0].running_pl)
+print("percentage: ",res[0].running_pl_percentage)
+# print(res[0].stock)

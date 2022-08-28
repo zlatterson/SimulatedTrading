@@ -1,6 +1,9 @@
 from db.run_sql import run_sql
+from models.buy_sell_action import BuySellAction
 
 from models.user import User
+from services.stock_service import StockService
+import repositories.stock_repository as stock_repository
 
 def save(user):
     sql = "INSERT INTO users (username,name,money_paid_in,money) VALUES (%s,%s,%s,%s) RETURNING id"
@@ -39,3 +42,16 @@ def delete(id):
     sql = "DELETE FROM users WHERE id = %s"
     values = [id]
     run_sql(sql, values)
+
+def buy_sell_actions(user):
+    buy_sell_actions = []
+
+    sql = "SELECT * FROM buy_sell_actions WHERE user_id = %s"
+    values = [user.id]
+    results = run_sql(sql, values)
+    print("here", results)
+    for row in results:
+        stock = stock_repository.select(row["stock_id"])
+        buy_sell_action = BuySellAction(stock,row["average_price"],row["quantity"],row["buy_sell_type"],row["timestamp"],row["last_action"],user,row["id"])
+        buy_sell_actions.append(buy_sell_action)
+    return buy_sell_actions
