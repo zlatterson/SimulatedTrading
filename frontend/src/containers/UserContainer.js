@@ -23,6 +23,7 @@ useEffect(()=>{
   showUserBuySellActions(selectedUserId).then((result)=>{
     setSelectedUserBuySellActions(result)
   })
+  // TODO: Add another.then() to find the running pl percentage of each user
 }, [selectedUserId]);
 
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const StockSearch = ({setSearchedTicker, searchedTicker, searchInput, setSearchInput}) => {
+const StockSearch = ({setSearchedTicker, searchInput, setSearchInput}) => {
     const handleSearchInput = (e) => {
         setSearchInput(e.target.value)
       }
@@ -10,8 +10,7 @@ const StockSearch = ({setSearchedTicker, searchedTicker, searchInput, setSearchI
       }
   return (
     <form onSubmit={newSubmit}>
-    {/* <label htmlFor="new-item">Search for a term:</label> */}
-    <input id="new-item" type="text" onChange={handleSearchInput} placeholder="Search term (Case-sensitive)..."></input>
+    <input type="text" onChange={handleSearchInput} placeholder="Search ticker or place order directly..."></input>
     <input type="submit" value="Search" />
   </form>
   );
