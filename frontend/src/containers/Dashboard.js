@@ -4,6 +4,7 @@ import StockSearch from '../components/StockSearch';
 import UserList from '../components/UserList';
 import {showUserBuySellActions} from "../services/UserService";
 import {searchStockByTicker} from "../services/StockService";
+import Stock from '../components/Stock';
 
 function Dashboard() {
     const [isLoaded, setIsLoaded] = useState(false)
@@ -42,6 +43,7 @@ function Dashboard() {
     return (
     <div>
         <StockSearch searchInput={searchInput} setSearchInput={setSearchInput} setSearchedTicker={setSearchedTicker} searchedTicker={searchedTicker}/>
+        <Stock foundStock={foundStock}/>
         <BuySellList selectedUserBuySellActions={buySellActions}/>
     </div>
     );
