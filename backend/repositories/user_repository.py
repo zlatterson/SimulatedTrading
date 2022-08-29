@@ -54,3 +54,12 @@ def buy_sell_actions(user):
         buy_sell_action = BuySellAction(stock,row["average_price"],row["quantity"],row["buy_sell_type"],row["timestamp"],row["last_action"],user,row["id"])
         buy_sell_actions.append(buy_sell_action)
     return buy_sell_actions
+
+def buy_sell_action(user, stock):
+    buy_sell_action = None
+    sql = "SELECT * FROM buy_sell_actions WHERE user_id = %s AND stock_id= %s"
+    values = [user.id, stock.id]
+    result = run_sql(sql,values)[0]
+    if result:
+        buy_sell_action = BuySellAction(stock,result["average_price"],result["quantity"],result["buy_sell_type"],result["timestamp"],result["last_action"],user,result["id"])
+    return buy_sell_action

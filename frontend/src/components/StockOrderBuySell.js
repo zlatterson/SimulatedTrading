@@ -9,10 +9,8 @@ const StockOrderBuySell = ({user, stock, quantityInput, setQuantityInput, setSen
       }
       const newSubmit = (e) => {
         e.preventDefault();
-        let jsonArray = [];
-        let jsonObject = { name : 'abc',quantity : quantityInput, gender : 'Male'};
-        jsonArray.push(jsonObject);
-        setSentBuySellOrder(jsonArray)
+        let objectToSend = {stock_id: stock.id ,quantity: quantityInput, buy_sell_type: "BUY",user_id: user.id};
+        setSentBuySellOrder(objectToSend)
       }
 
     return (

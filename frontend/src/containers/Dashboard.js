@@ -4,6 +4,7 @@ import StockSearch from '../components/StockSearch';
 import UserList from '../components/UserList';
 import {showUserBuySellActions, showUser} from "../services/UserService";
 import {searchStockByTicker} from "../services/StockService";
+import {postBuySellAction} from "../services/BuySellActionService";
 import Stock from '../components/Stock';
 import Profile from '../components/Profile';
 
@@ -60,6 +61,13 @@ function Dashboard() {
         setFoundStock(result)
     })
     }, [searchedTicker]);
+    // place buy sell order
+    useEffect(()=>{
+        if(!isLoaded){
+    return
+    }
+    postBuySellAction(sentBuySellOrder)
+    }, [sentBuySellOrder]);
 
     return (
     <div>
