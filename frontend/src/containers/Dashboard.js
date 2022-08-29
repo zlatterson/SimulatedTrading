@@ -76,7 +76,7 @@ function Dashboard() {
         if(!isLoaded){
     return
     }
-    showOptions(orderTypeCallPut).then((result)=>{
+    showOptions(searchedTicker).then((result)=>{
         setOptions(result)
     })
     }, [orderTypeCallPut]);
@@ -86,7 +86,7 @@ function Dashboard() {
     <div>
         <Profile currentUser={currentUser}/>
         <StockSearch searchInput={searchInput} setSearchInput={setSearchInput} setSearchedTicker={setSearchedTicker}/>
-        <Stock foundStock={foundStock} user = {currentUser} orderTypeBuySell={orderTypeBuySell} setOrderTypeBuySell={setOrderTypeBuySell} orderTypeCallPut={orderTypeCallPut} setOrderTypeCallPut={setOrderTypeCallPut} setQuantityInput = {setQuantityInput} quantityInput={quantityInput} setSentBuySellOrder={setSentBuySellOrder}/>
+        <Stock foundStock={foundStock} user = {currentUser} orderTypeBuySell={orderTypeBuySell} setOrderTypeBuySell={setOrderTypeBuySell} orderTypeCallPut={orderTypeCallPut} setOrderTypeCallPut={setOrderTypeCallPut} setQuantityInput = {setQuantityInput} quantityInput={quantityInput} setSentBuySellOrder={setSentBuySellOrder} options={options}/>
         <BuySellList selectedUserBuySellActions={buySellActions}/>
     </div>
     );
