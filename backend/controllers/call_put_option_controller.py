@@ -18,7 +18,7 @@ call_put_options_blueprint = Blueprint("call_put_options_blueprint", __name__)
 @call_put_options_blueprint.route("/call_put_options/search/<ticker>")
 def show_buy_call_put_options(ticker):
     res = CallPutOptionService.find_calls(ticker)
-    response = res.reset_index().to_json(orient='records')
+    response = res.reset_index(drop=True).to_json(orient='records')
     return response
     call_put_options = jsonpickle.encode()
     return call_put_options

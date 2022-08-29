@@ -1,10 +1,9 @@
 import React from 'react';
 import StockOrderCallPutItem from './StockOrderCallPutItem';
 
-const StockOrderCallPutList = ({user, options }) => {
-
-    const optionNodes = options.map((user, index, options) => {
-        return <StockOrderCallPutItem user={user} key={index} options={options}/>
+const StockOrderCallPutList = ({user, options, setSelectedOption, selectedOption}) => {
+    const optionNodes = options.map((option, index) => {
+        return <StockOrderCallPutItem user={user} key={index} option={option} setSelectedOption={setSelectedOption} selectedOption={selectedOption}/>
     })
   return (
     <>

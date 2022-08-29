@@ -2,7 +2,7 @@ import React from 'react';
 import StockOrderBuySell from './StockOrderBuySell';
 import StockOrderCallPutList from './StockOrderCallPutList';
 
-const Stock = ({foundStock, user,setOrderTypeBuySell,orderTypeBuySell, setOrderTypeCallPut, orderTypeCallPut, quantityInput, setQuantityInput, setSentBuySellOrder, options}) => {
+const Stock = ({foundStock, user,setOrderTypeBuySell,orderTypeBuySell, setOrderTypeCallPut, orderTypeCallPut, quantityInput, setQuantityInput, setSentBuySellOrder, options, setSelectedOption, selectedOption}) => {
     const handleBuySellOrder = (e) => {
         e.preventDefault();
         setOrderTypeCallPut(false)
@@ -30,7 +30,7 @@ const Stock = ({foundStock, user,setOrderTypeBuySell,orderTypeBuySell, setOrderT
                     <StockOrderBuySell user={user} stock={foundStock} quantityInput={quantityInput} setQuantityInput={setQuantityInput} setSentBuySellOrder={setSentBuySellOrder}/> : <></>
                 }
                 {orderTypeCallPut === true && options !== null ?
-                    <StockOrderCallPutList user={user} options={options}/> : <></>
+                    <StockOrderCallPutList user={user} options={options} setSelectedOption={setSelectedOption}/> : <></>
                 }
             </div>
         : <></>}

@@ -30,19 +30,20 @@ def get_buy_sell_action():
     quantity = request.json.get("data").get("quantity")
     buy_sell_type = request.json.get("data").get("buy_sell_type")
     existing_position = None
-    try:
-        existing_position = user_repository.buy_sell_action(user, stock)
-    except:
-        result = BuySellActionService.make_postion(stock,quantity,buy_sell_type,user)
-        buy_sell_action_repository.save(result[0])
-        user.money = result[1].money
-        user_repository.update(user)
+    if buy_sell_type == "BUY":
+        try:
+            existing_position = user_repository.buy_sell_action(user, stock)
+        except:
+            result = BuySellActionService.make_postion(stock,quantity,buy_sell_type,user)
+            buy_sell_action_repository.save(result[0])
+            user.money = result[1].money
+            user_repository.update(user)
 
-    if existing_position != None:
-        existing_position.stock.fetch_price()
-        existing_position.buy(quantity)
-        buy_sell_action_repository.update(existing_position)
-        user_repository.update(existing_position.user)
+        if existing_position != None:
+            existing_position.stock.fetch_price()
+            existing_position.buy(quantity)
+            buy_sell_action_repository.update(existing_position)
+            user_repository.update(existing_position.user)
 
 
 

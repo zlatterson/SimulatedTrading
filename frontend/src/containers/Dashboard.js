@@ -27,6 +27,8 @@ function Dashboard() {
     // call put
     const [orderTypeCallPut, setOrderTypeCallPut] = useState(false)
     const [options, setOptions] = useState([])
+    const [selectedOption, setSelectedOption]  = useState(null)
+    // 
 
     useEffect(()=>{
         setIsLoaded(true)
@@ -86,7 +88,7 @@ function Dashboard() {
     <div>
         <Profile currentUser={currentUser}/>
         <StockSearch searchInput={searchInput} setSearchInput={setSearchInput} setSearchedTicker={setSearchedTicker}/>
-        <Stock foundStock={foundStock} user = {currentUser} orderTypeBuySell={orderTypeBuySell} setOrderTypeBuySell={setOrderTypeBuySell} orderTypeCallPut={orderTypeCallPut} setOrderTypeCallPut={setOrderTypeCallPut} setQuantityInput = {setQuantityInput} quantityInput={quantityInput} setSentBuySellOrder={setSentBuySellOrder} options={options}/>
+        <Stock foundStock={foundStock} user = {currentUser} orderTypeBuySell={orderTypeBuySell} setOrderTypeBuySell={setOrderTypeBuySell} orderTypeCallPut={orderTypeCallPut} setOrderTypeCallPut={setOrderTypeCallPut} setQuantityInput = {setQuantityInput} quantityInput={quantityInput} setSentBuySellOrder={setSentBuySellOrder} options={options} selectedOption={selectedOption} setSelectedOption={setSelectedOption}/>
         <BuySellList selectedUserBuySellActions={buySellActions}/>
     </div>
     );
