@@ -1,6 +1,9 @@
 import React from 'react';
+import BuySellItem from './BuySellItem';
+import BuySellList from './BuySellList';
 
-const UserItem = ({user,setSelectedUserId}) => {
+const UserItem = ({user,setSelectedUserId,selectedUserBuySellActions, selectedUserId}) => {
+
     const handleClick = () => {
         setSelectedUserId(user.id)
     }
@@ -8,7 +11,7 @@ const UserItem = ({user,setSelectedUserId}) => {
     return (
     <li>
         <h3 onClick={handleClick}>@{user.username} {user.name} ${user.money}</h3>
-        {/* {user.name} */}
+        {user.id === selectedUserId ? <BuySellList selectedUserBuySellActions={selectedUserBuySellActions}/> : <></>}
     </li>
     );
 }

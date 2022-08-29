@@ -5,10 +5,9 @@ import {showUsers, showUser, showUserBuySellActions} from "../services/UserServi
 function HomeContainer() {
   const [isLoaded, setIsLoaded] = useState(false)
   const [users, setUsers] = useState([])
-  // const [user, setUser] = useState([])
 
   const [selectedUserId,setSelectedUserId] = useState(null)
-  const [selectedUser, setSelectedUser] = useState(null)
+  const [selectedUserBuySellActions, setSelectedUserBuySellActions] = useState(null)
 
   useEffect(()=>{
     showUsers().then((result)=>{
@@ -22,14 +21,14 @@ useEffect(()=>{
     return
   }
   showUserBuySellActions(selectedUserId).then((result)=>{
-  setSelectedUser(result)
+    setSelectedUserBuySellActions(result)
   })
 }, [selectedUserId]);
 
   return (
 <div>
   {users.Modules}
-  <UserList users={users} setSelectedUserId={setSelectedUserId}/>
+  <UserList users={users} selectedUserId={selectedUserId} setSelectedUserId={setSelectedUserId} selectedUserBuySellActions={selectedUserBuySellActions}/>
 </div>
   );
 }

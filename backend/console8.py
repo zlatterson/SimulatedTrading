@@ -66,3 +66,21 @@ for p in ps:
     total_profit += p.running_pl
 print("total prift:", total_profit)
 print("total spent: ", mrman.money - mrman.money_paid_in)
+
+tick = "AMZN"
+try:
+    stock = stock_repository.select_by_ticker(tick)
+except IndexError:
+    new_stock = StockService.make_stock(tick)
+    stock_repository.save(new_stock)
+
+# if stock == None:
+#     print("hi")
+
+# StockService.make_stock(tick)
+# try:
+#     StockService.make_stock(tick)
+# except:
+#     pass
+# else:
+#     stock_repository.select_by_ticker(tick)

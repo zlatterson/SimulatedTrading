@@ -14,5 +14,7 @@ buy_sell_actions_blueprint = Blueprint("buy_sell_actions", __name__)
 
 @buy_sell_actions_blueprint.route("/buy_sell_actions/<id>")
 def show_buy_sell_action(id):
-    buy_sell_action = jsonpickle.encode(buy_sell_action_repository.select(id))
+    res = buy_sell_action_repository.select(id)
+    res.stock.current_price
+    buy_sell_action = jsonpickle.encode(res)
     return buy_sell_action
