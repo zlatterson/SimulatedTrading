@@ -6,20 +6,17 @@ class StockService:
 
 
     def find_stock_price(ticker):
-        ticker_prices = []
+        # ticker_prices = []
         try:
             market_status = si.get_market_status()
             if market_status == "PRE":
                 price = si.get_premarket_price(ticker)
-                ticker_prices.append({ticker:price})
                 return price
             elif market_status == "POST":
-                price = si.get_premarket_price(ticker)
-                ticker_prices.append({ticker:price})
+                price = si.get_postmarket_price(ticker)
                 return price
             else: 
                 price = si.get_live_price(ticker)
-                ticker_prices.append({ticker:price})
                 return price
         except:
             return print('find_stock_price: error') 

@@ -62,10 +62,10 @@ ps = user_repository.buy_sell_actions(mrman)
 total_profit = 0
 for p in ps:
     pprint(vars(p))
-    p.current_price
-    total_profit += p.running_pl
-print("total prift:", total_profit)
-print("total spent: ", mrman.money - mrman.money_paid_in)
+    p.stock.fetch_price()
+    # total_profit += p.running_pl
+# print("total prift:", total_profit)
+# print("total spent: ", mrman.money - mrman.money_paid_in)
 
 # tick = "AMZN"
 # try:

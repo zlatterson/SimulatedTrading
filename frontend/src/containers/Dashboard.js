@@ -5,6 +5,7 @@ import UserList from '../components/UserList';
 import {showUserBuySellActions, showUser} from "../services/UserService";
 import {searchStockByTicker} from "../services/StockService";
 import {postBuySellAction} from "../services/BuySellActionService";
+import {showOptions} from "../services/CallPutOptionService";
 import Stock from '../components/Stock';
 import Profile from '../components/Profile';
 
@@ -20,10 +21,12 @@ function Dashboard() {
     const [foundStock, setFoundStock] = useState(null)
 
     const [orderTypeBuySell, setOrderTypeBuySell] = useState(false)
-    const [orderTypeCallPut, setOrderTypeCallPut] = useState(false)
     const [quantityInput, setQuantityInput] = useState(null)
 
     const [sentBuySellOrder, setSentBuySellOrder] = useState(null)
+    // call put
+    const [orderTypeCallPut, setOrderTypeCallPut] = useState(false)
+    const [options, setOptions] = useState([])
 
     useEffect(()=>{
         setIsLoaded(true)
@@ -61,13 +64,23 @@ function Dashboard() {
         setFoundStock(result)
     })
     }, [searchedTicker]);
-    // place buy sell order
+    // place buy sell order **TODO RES
     useEffect(()=>{
         if(!isLoaded){
     return
     }
     postBuySellAction(sentBuySellOrder)
     }, [sentBuySellOrder]);
+    // callput
+    useEffect(()=>{
+        if(!isLoaded){
+    return
+    }
+    showOptions(orderTypeCallPut).then((result)=>{
+        setOptions(result)
+    })
+    }, [orderTypeCallPut]);
+
 
     return (
     <div>

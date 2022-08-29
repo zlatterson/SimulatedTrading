@@ -4,7 +4,7 @@ const BuySellItem = ({buySellAction}) => {
   
   return (
 <li>
-{buySellAction.buy_sell_type} {buySellAction.quantity} {buySellAction.stock.ticker} @ ${buySellAction.average_price} +{buySellAction.score}%
+{buySellAction.buy_sell_type} {buySellAction.quantity} {buySellAction.stock.ticker} @ ${buySellAction.average_price.toFixed(2)} {buySellAction.score.toFixed(2)}%
 <h5>{buySellAction.last_action}</h5>
 </li>
   );

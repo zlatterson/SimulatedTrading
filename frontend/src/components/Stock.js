@@ -28,6 +28,9 @@ const Stock = ({foundStock, user,setOrderTypeBuySell,orderTypeBuySell, setOrderT
                 {orderTypeBuySell === true ?
                     <StockOrderBuySell user={user} stock={foundStock} quantityInput={quantityInput} setQuantityInput={setQuantityInput} setSentBuySellOrder={setSentBuySellOrder}/> : <></>
                 }
+                {orderTypeCallPut === true ?
+                    <StockOrderBuySell user={user} stock={foundStock} quantityInput={quantityInput} setQuantityInput={setQuantityInput} setSentBuySellOrder={setSentBuySellOrder}/> : <></>
+                }
             </div>
         : <></>}
         </div>

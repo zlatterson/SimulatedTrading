@@ -39,6 +39,7 @@ def show_user_buy_sell_actions(user_id):
     user = user_repository.select(user_id)
     response = user_repository.buy_sell_actions(user)
     for res in response:
+        pprint(vars(res))
         res.score = float(res.running_pl_percentage)
         res.stock._current_price = float(res.stock._current_price)
     user_buy_sell_actions = jsonpickle.encode(response)
