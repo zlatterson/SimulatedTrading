@@ -59,9 +59,4 @@ def get_buy_sell_action():
     res.stock.current_price
     buy_sell_action = jsonpickle.encode(res)
     return buy_sell_action
-    return jsonify(request.json)
-    # res = buy_sell_action_repository.select(id)
-    # res.stock.current_price
-    # buy_sell_action = jsonpickle.encode(res)
-    # return buy_sell_action
 

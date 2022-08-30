@@ -10,14 +10,14 @@ const CallPutContract = ({ contract, user, option, optionQuantityInput, setOptio
       }
       const newSubmit = (e) => {
         e.preventDefault();
-        let objectToSend = { contract, optionQuantityInput, buy_sell_type: "BUY",user_id: user.id};
+        let objectToSend = { contract, quantity: optionQuantityInput, buy_sell_type: "BUY",user_id: user.id};
         setSentOptionOrder(objectToSend)
       }
 
     return (
         <div>
-            Call price: {option.call_price} Strik Price: {option.strike} Day's Range: {option.days_range} Expires: {option.expires} Volume: {option.volume}
-        
+            Call price: {option.call_price} Strike Price: {option.strike} Day's Range: {option.days_range} Expires: {option.expires} Volume: {option.volume}
+            <p>cost: ${(optionQuantityInput * option.call_price * 100).toFixed(2)}</p>
                 <form onSubmit={newSubmit}>
                 <input type="number" min="1" max={((user.money / orderPrice).toFixed(0)) - 1} onChange={handleSearchInput} placeholder="Quantity..."></input>
                 <input type="submit" value="Order" />
