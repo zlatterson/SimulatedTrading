@@ -5,7 +5,6 @@ import jsonpickle
 import numpy as np
 import pandas as pd
 
-
 import repositories.user_repository as user_repository
 import repositories.stock_repository as stock_repository
 import repositories.buy_sell_action_repository as buy_sell_action_repository
