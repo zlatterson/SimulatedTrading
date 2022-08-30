@@ -21,3 +21,17 @@ export const postCallPutOption = (data) => {
       })
     })
     }
+
+    export const exerciseCallPutOption = (data) => {
+        return fetch(`${baseURL}/exercise`, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            data
+          })
+        })
+        }
+    

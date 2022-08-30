@@ -56,3 +56,14 @@ def create_call_put_option():
     user_repository.update(result[1])
 
     return jsonify(request.json)
+
+@call_put_options_blueprint.route("/call_put_options/exercise", methods=['POST'])
+def exercise_call_put_option():
+    call_put_option_id = request.json.get("data").get("call_put_option_id")
+    call_put_option = call_put_option_repository.select(call_put_option_id)
+    call_put_option.call_put_contract.fetch_c_price()
+    user = call_put_option.user
+    user.money += call_put_option.current_contracts_value
+    user_repository.update(user)
+    call_put_option_repository.delete(call_put_option_id)
+    return jsonify(request.json)

@@ -5,7 +5,7 @@ import UserList from '../components/UserList';
 import {showUserBuySellActions, showUser, showUserCallPutOptions} from "../services/UserService";
 import {searchStockByTicker} from "../services/StockService";
 import {postBuySellAction} from "../services/BuySellActionService";
-import {showOptions,showOption, postCallPutOption} from "../services/CallPutOptionService";
+import {showOptions,showOption, postCallPutOption, exerciseCallPutOption} from "../services/CallPutOptionService";
 import Stock from '../components/Stock';
 import Profile from '../components/Profile';
 import CallPutList from '../components/CallPutList';
@@ -38,6 +38,7 @@ function Dashboard() {
     const [sentSellOrder, setSentSellOrder] = useState(null)
     // Get user buy sell actions
     const [callputOptions, setCallPutOptions] = useState([])
+    const [exerciseOrder, setExerciseOrder] = useState(null)
 
 useEffect(()=>{
         setIsLoaded(true)
@@ -128,13 +129,26 @@ useEffect(()=>{
         setSentSellOrder(null)
     })
     }, [sentSellOrder]);
+// EXERCISE call put order
+useEffect(()=>{
+    if(!isLoaded){
+        return
+    }
+    if(exerciseOrder == null){
+        return
+    }
+    exerciseCallPutOption(exerciseOrder).then(() => {
+        setExerciseOrder(null)
+    })
+    }, [exerciseOrder]);
+
 
     return (
     <div>
         <Profile currentUser={currentUser}/>
         <StockSearch searchInput={searchInput} setSearchInput={setSearchInput} setSearchedTicker={setSearchedTicker}/>
         <Stock foundStock={foundStock} user = {currentUser} orderTypeBuySell={orderTypeBuySell} setOrderTypeBuySell={setOrderTypeBuySell} orderTypeCallPut={orderTypeCallPut} setOrderTypeCallPut={setOrderTypeCallPut} setQuantityInput = {setQuantityInput} quantityInput={quantityInput} setSentBuySellOrder={setSentBuySellOrder} options={options} selectedOption={selectedOption} setSelectedOption={setSelectedOption} option={option} optionQuantityInput={optionQuantityInput} setOptionQuantityInput={setOptionQuantityInput} setSentOptionOrder={setSentOptionOrder}/>
-        <CallPutList callputOptions={callputOptions}/>
+        <CallPutList callputOptions={callputOptions} setExerciseOrder={setExerciseOrder}/>
         <BuySellList selectedUserBuySellActions={buySellActions} sellQuantityInput={sellQuantityInput} setSellQuantityInput={setSellQuantityInput} setSentSellOrder={setSentSellOrder} user={currentUser}/>
     </div>
     );
