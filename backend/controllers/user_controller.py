@@ -50,8 +50,7 @@ def show_user_call_put_options(user_id):
     user = user_repository.select(user_id)
     response = user_repository.call_put_options(user)
     for res in response:
-        pprint(vars(res))
         res.call_put_contract.fetch_c_price()
-        res.call_put_contract.stock.fetch_price()
+        res.call_put_contract.current_c_price = float(res.call_put_contract.current_c_price)
     user_call_put_options = jsonpickle.encode(response)
     return user_call_put_options
