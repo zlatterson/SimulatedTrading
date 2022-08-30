@@ -45,6 +45,6 @@ def delete_all():
     run_sql(sql)
 
 def delete(id):
-    sql = "DELETE FROM buy_sell_action WHERE id = %s"
+    sql = "DELETE FROM buy_sell_actions WHERE id = %s"
     values = [id]
     run_sql(sql, values)

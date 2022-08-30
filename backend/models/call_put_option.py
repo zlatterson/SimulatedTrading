@@ -28,3 +28,4 @@ class CallPutOption():
     @property
     def running_pl_percentage(self):
         return (self.current_contract_value - self.bought_contracts_value) / self.bought_contracts_value * 100
+    

@@ -40,3 +40,12 @@ def delete(id):
     sql = "DELETE FROM stocks WHERE id = %s"
     values = [id]
     run_sql(sql, values)
+
+def select_by_ticker(ticker):
+    stock = None
+    sql = "SELECT * FROM stocks where ticker = %s"
+    values = [ticker]
+    row = run_sql(sql, values)[0]
+    if row is not None:
+        stock = Stock(row["ticker"],row["summary"],row["id"])
+    return stock

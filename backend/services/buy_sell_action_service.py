@@ -6,6 +6,8 @@ from models.stock import Stock
 from models.user import User
 from services.market_service import MarketService
 
+import repositories.user_repository as user_repository
+
 
 class BuySellActionService:
 
@@ -17,8 +19,9 @@ class BuySellActionService:
             order_cost = stock.current_price * quantity
             if user.money >= order_cost:
                 user.money -= order_cost
+                user_repository.update(user)
                 last_action = BuySellActionService.invoice(buy_sell_type,quantity,stock)
-                return BuySellAction(stock,stock.current_price,quantity,buy_sell_type,datetime.now(),last_action,user)
+                return BuySellAction(stock,stock.current_price,quantity,buy_sell_type,datetime.now(),last_action,user),user
             else:
                 raise Exception("Not enough money")
 
