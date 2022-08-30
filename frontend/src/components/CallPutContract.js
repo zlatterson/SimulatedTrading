@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CallPutContract = ({ contract, user, option, optionQuantityInput, setOptionQuantityInput, setSentOptionOrder}) => {
+const CallPutContract = ({ contract, user, option, optionQuantityInput, setOptionQuantityInput, setSentOptionOrder,stock}) => {
     let orderPrice = option.call_price * 100
 
     const handleSearchInput = (e) => {
@@ -10,7 +10,7 @@ const CallPutContract = ({ contract, user, option, optionQuantityInput, setOptio
       }
       const newSubmit = (e) => {
         e.preventDefault();
-        let objectToSend = { contract, quantity: optionQuantityInput, buy_sell_type: "BUY",user_id: user.id};
+        let objectToSend = { contract, quantity: optionQuantityInput, buy_sell_type: "BUY",call_put_type:"CALL",user_id: user.id, ticker:stock.ticker};
         setSentOptionOrder(objectToSend)
       }
 

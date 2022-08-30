@@ -28,7 +28,7 @@ class CallPutOptionService:
             order_cost = contract.current_contract_value * n_contracts
             if user.money >= order_cost:
                 user.money -= order_cost
-                return CallPutOption(contract,buy_sell_type,n_contracts,contract.current_c_price,contract.current_contract_value,datetime.now(),user)
+                return CallPutOption(contract,buy_sell_type,n_contracts,contract.current_c_price,contract.current_contract_value,datetime.now(),user),user
             else:
                 raise Exception("Not enough money")
 

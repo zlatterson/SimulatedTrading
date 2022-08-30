@@ -5,7 +5,7 @@ import UserList from '../components/UserList';
 import {showUserBuySellActions, showUser} from "../services/UserService";
 import {searchStockByTicker} from "../services/StockService";
 import {postBuySellAction} from "../services/BuySellActionService";
-import {showOptions,showOption} from "../services/CallPutOptionService";
+import {showOptions,showOption, postCallPutOption} from "../services/CallPutOptionService";
 import Stock from '../components/Stock';
 import Profile from '../components/Profile';
 
@@ -93,13 +93,23 @@ useEffect(()=>{
     if(!isLoaded){
         return
     }
+    if(sentOptionOrder == null){
+        return
+    }
+    postCallPutOption(sentOptionOrder)
+    }, [sentOptionOrder]);
+
+useEffect(()=>{
+    if(!isLoaded){
+        return
+    }
     if(selectedOption == null){
         return
     }
     showOption(selectedOption).then((result)=>{
         setOption(result)
     })
-    }, [selectedOption]);
+    }, [selectedOption]);    
 // SELL buy sell actions
 useEffect(()=>{
     if(!isLoaded){

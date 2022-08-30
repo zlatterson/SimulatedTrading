@@ -8,3 +8,16 @@ export const showOption = (contractName) => {
     return fetch(`${baseURL}/${contractName}`)
         .then(res => res.json())
 }
+
+export const postCallPutOption = (data) => {
+    return fetch(`${baseURL}`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        data
+      })
+    })
+    }

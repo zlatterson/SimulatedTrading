@@ -35,7 +35,7 @@ const Stock = ({foundStock, user,setOrderTypeBuySell,orderTypeBuySell, setOrderT
                 {orderTypeCallPut === true ?
                 <div>
                     {option !== null ?
-                    <CallPutContract user={user} contract={selectedOption} option={option} optionQuantityInput={optionQuantityInput} setOptionQuantityInput={setOptionQuantityInput} setSentOptionOrder={setSentOptionOrder}/>
+                    <CallPutContract user={user} contract={selectedOption} stock={foundStock} option={option} optionQuantityInput={optionQuantityInput} setOptionQuantityInput={setOptionQuantityInput} setSentOptionOrder={setSentOptionOrder}/>
                     : <></>}
                     <StockOrderCallPutList user={user} options={options} setSelectedOption={setSelectedOption} option={option}/> 
                     </div>
