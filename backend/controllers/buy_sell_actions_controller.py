@@ -45,12 +45,23 @@ def get_buy_sell_action():
             buy_sell_action_repository.update(existing_position)
             user_repository.update(existing_position.user)
 
+    if buy_sell_type == "SELL":
+        existing_position = user_repository.buy_sell_action(user, stock)
+        existing_position.stock.fetch_price()
+        existing_position.sell(quantity)
+        buy_sell_action_repository.update(existing_position)
+        user_repository.update(existing_position.user)
+        if existing_position.quantity + quantity == quantity:
+            buy_sell_action_repository.delete(existing_position.id)
+            return jsonify(request.json)
 
-
-    # BuySellActionService.make_postion()
-    return jsonify(request.json)
-    res = buy_sell_action_repository.select(id)
+    res = user_repository.buy_sell_action(user, stock)
     res.stock.current_price
     buy_sell_action = jsonpickle.encode(res)
     return buy_sell_action
+    return jsonify(request.json)
+    # res = buy_sell_action_repository.select(id)
+    # res.stock.current_price
+    # buy_sell_action = jsonpickle.encode(res)
+    # return buy_sell_action
 

@@ -36,14 +36,14 @@ function Dashboard() {
     const [sellQuantityInput, setSellQuantityInput] = useState(null)
     const [sentSellOrder, setSentSellOrder] = useState(null)
 
-    useEffect(()=>{
+useEffect(()=>{
         setIsLoaded(true)
     }, []);
 
     // Show user buy sell actions
-    useEffect(()=>{
-        if(!isLoaded){
-    return
+useEffect(()=>{
+    if(!isLoaded){
+        return
     }
     showUser(currentUserId).then((result)=>{
         setCurrentUser(result)
@@ -54,9 +54,9 @@ function Dashboard() {
     }, [isLoaded]);
 
     // Search Ticker
-    useEffect(()=>{
-        if(!isLoaded){
-    return
+useEffect(()=>{
+    if(!isLoaded){
+        return
     }
     searchStockByTicker(searchedTicker).then((result)=>{
         setFoundStock(result)
@@ -64,34 +64,34 @@ function Dashboard() {
     }, [searchedTicker]);
 
     // BUY/SELL ORDER
-    useEffect(()=>{
-        if(!isLoaded){
-    return
+useEffect(()=>{
+    if(!isLoaded){
+        return
     }
     searchStockByTicker(searchedTicker).then((result)=>{
         setFoundStock(result)
     })
     }, [searchedTicker]);
     // place buy sell order **TODO RES
-    useEffect(()=>{
-        if(!isLoaded){
-    return
+useEffect(()=>{
+    if(!isLoaded){
+        return
     }
     postBuySellAction(sentBuySellOrder)
     }, [sentBuySellOrder]);
     // callput
-    useEffect(()=>{
-        if(!isLoaded){
-    return
+useEffect(()=>{
+    if(!isLoaded){
+        return
     }
     showOptions(searchedTicker).then((result)=>{
         setOptions(result)
     })
     }, [orderTypeCallPut]);
 
-    useEffect(()=>{
-        if(!isLoaded){
-    return
+useEffect(()=>{
+    if(!isLoaded){
+        return
     }
     if(selectedOption == null){
         return
@@ -100,7 +100,18 @@ function Dashboard() {
         setOption(result)
     })
     }, [selectedOption]);
-
+// SELL buy sell actions
+useEffect(()=>{
+    if(!isLoaded){
+        return
+    }
+    if(sentSellOrder == null){
+        return
+    }
+    postBuySellAction(sentSellOrder).then(() => {
+        setSentSellOrder(null)
+    })
+    }, [sentSellOrder]);
 
     return (
     <div>
