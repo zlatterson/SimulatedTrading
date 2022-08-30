@@ -29,7 +29,12 @@ function Dashboard() {
     const [options, setOptions] = useState([])
     const [selectedOption, setSelectedOption]  = useState(null)
     const [option, setOption] = useState(null)
+    const [optionQuantityInput, setOptionQuantityInput] = useState(null)
+    const [sentOptionOrder, setSentOptionOrder] = useState(null)
     // 
+    // SELL order for buy sell
+    const [sellQuantityInput, setSellQuantityInput] = useState(null)
+    const [sentSellOrder, setSentSellOrder] = useState(null)
 
     useEffect(()=>{
         setIsLoaded(true)
@@ -88,6 +93,9 @@ function Dashboard() {
         if(!isLoaded){
     return
     }
+    if(selectedOption == null){
+        return
+    }
     showOption(selectedOption).then((result)=>{
         setOption(result)
     })
@@ -98,8 +106,8 @@ function Dashboard() {
     <div>
         <Profile currentUser={currentUser}/>
         <StockSearch searchInput={searchInput} setSearchInput={setSearchInput} setSearchedTicker={setSearchedTicker}/>
-        <Stock foundStock={foundStock} user = {currentUser} orderTypeBuySell={orderTypeBuySell} setOrderTypeBuySell={setOrderTypeBuySell} orderTypeCallPut={orderTypeCallPut} setOrderTypeCallPut={setOrderTypeCallPut} setQuantityInput = {setQuantityInput} quantityInput={quantityInput} setSentBuySellOrder={setSentBuySellOrder} options={options} selectedOption={selectedOption} setSelectedOption={setSelectedOption} option={option}/>
-        <BuySellList selectedUserBuySellActions={buySellActions}/>
+        <Stock foundStock={foundStock} user = {currentUser} orderTypeBuySell={orderTypeBuySell} setOrderTypeBuySell={setOrderTypeBuySell} orderTypeCallPut={orderTypeCallPut} setOrderTypeCallPut={setOrderTypeCallPut} setQuantityInput = {setQuantityInput} quantityInput={quantityInput} setSentBuySellOrder={setSentBuySellOrder} options={options} selectedOption={selectedOption} setSelectedOption={setSelectedOption} option={option} optionQuantityInput={optionQuantityInput} setOptionQuantityInput={setOptionQuantityInput} setSentOptionOrder={setSentOptionOrder}/>
+        <BuySellList selectedUserBuySellActions={buySellActions} sellQuantityInput={sellQuantityInput} setSellQuantityInput={setSellQuantityInput} setSentSellOrder={setSentSellOrder} user={currentUser}/>
     </div>
     );
     }
