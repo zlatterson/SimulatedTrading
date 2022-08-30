@@ -12,16 +12,7 @@ export const showUserBuySellActions = (id) => {
     return fetch(`${baseURL}/${id}/buy_sell_actions`)
         .then(res => res.json())
 }
-
-
-// export const insertData = (body) =>{
-//     return fetch(`http://localhost:5000/users`,{
-//         'method':'POST',
-//          headers : {
-//         'Content-Type':'application/json'
-//   },
-//   body:JSON.stringify(body)
-// })
-// .then(response => response.json())
-// .catch(error => console.log(error))
-// }
+export const showUserCallPutOptions = (id) => {
+    return fetch(`${baseURL}/${id}/call_put_options`)
+        .then(res => res.json())
+}
