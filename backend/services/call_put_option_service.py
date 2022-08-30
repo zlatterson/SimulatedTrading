@@ -38,3 +38,5 @@ class CallPutOptionService:
     
     def calc_contracts_value_USD(contract_value, n_contracts):
         return contract_value * n_contracts * 100
+
+

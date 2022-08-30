@@ -4,3 +4,7 @@ export const showOptions = (ticker) => {
     return fetch(`${baseURL}/search/${ticker}`)
         .then(res => res.json())
 }
+export const showOption = (contractName) => {
+    return fetch(`${baseURL}/${contractName}`)
+        .then(res => res.json())
+}

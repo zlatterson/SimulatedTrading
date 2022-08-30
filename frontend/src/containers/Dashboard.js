@@ -5,7 +5,7 @@ import UserList from '../components/UserList';
 import {showUserBuySellActions, showUser} from "../services/UserService";
 import {searchStockByTicker} from "../services/StockService";
 import {postBuySellAction} from "../services/BuySellActionService";
-import {showOptions} from "../services/CallPutOptionService";
+import {showOptions,showOption} from "../services/CallPutOptionService";
 import Stock from '../components/Stock';
 import Profile from '../components/Profile';
 
@@ -28,6 +28,7 @@ function Dashboard() {
     const [orderTypeCallPut, setOrderTypeCallPut] = useState(false)
     const [options, setOptions] = useState([])
     const [selectedOption, setSelectedOption]  = useState(null)
+    const [option, setOption] = useState(null)
     // 
 
     useEffect(()=>{
@@ -83,12 +84,21 @@ function Dashboard() {
     })
     }, [orderTypeCallPut]);
 
+    useEffect(()=>{
+        if(!isLoaded){
+    return
+    }
+    showOption(selectedOption).then((result)=>{
+        setOption(result)
+    })
+    }, [selectedOption]);
+
 
     return (
     <div>
         <Profile currentUser={currentUser}/>
         <StockSearch searchInput={searchInput} setSearchInput={setSearchInput} setSearchedTicker={setSearchedTicker}/>
-        <Stock foundStock={foundStock} user = {currentUser} orderTypeBuySell={orderTypeBuySell} setOrderTypeBuySell={setOrderTypeBuySell} orderTypeCallPut={orderTypeCallPut} setOrderTypeCallPut={setOrderTypeCallPut} setQuantityInput = {setQuantityInput} quantityInput={quantityInput} setSentBuySellOrder={setSentBuySellOrder} options={options} selectedOption={selectedOption} setSelectedOption={setSelectedOption}/>
+        <Stock foundStock={foundStock} user = {currentUser} orderTypeBuySell={orderTypeBuySell} setOrderTypeBuySell={setOrderTypeBuySell} orderTypeCallPut={orderTypeCallPut} setOrderTypeCallPut={setOrderTypeCallPut} setQuantityInput = {setQuantityInput} quantityInput={quantityInput} setSentBuySellOrder={setSentBuySellOrder} options={options} selectedOption={selectedOption} setSelectedOption={setSelectedOption} option={option}/>
         <BuySellList selectedUserBuySellActions={buySellActions}/>
     </div>
     );

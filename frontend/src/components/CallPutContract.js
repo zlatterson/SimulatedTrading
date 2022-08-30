@@ -1,11 +1,11 @@
 import React from 'react';
 
-const CallPutContract = ({ selectedOption}) => {
+const CallPutContract = ({ selectedOption, user, option}) => {
 
 
     return (
-        <>hi
-                {selectedOption}
+        <>hi {user.username}
+                {selectedOption} {option}
         </>
     );
 }
