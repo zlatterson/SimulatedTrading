@@ -45,20 +45,8 @@ useEffect(()=>{
     }, []);
 
     // Show user buy sell actions
-useEffect(()=>{
-    if(!isLoaded){
-        return
-    }
-    showUser(currentUserId).then((result)=>{
-        setCurrentUser(result)
-    })
-    showUserBuySellActions(currentUserId).then((result)=>{
-        setBuySellActions(result)
-    })
-    showUserCallPutOptions(currentUserId).then((result)=>{
-        setCallPutOptions(result)
-    })
-    }, [isLoaded]);
+// useEffect(()=>{
+//     }, [isLoaded]);
 
     // Search Ticker
 useEffect(()=>{
@@ -141,15 +129,64 @@ useEffect(()=>{
         setExerciseOrder(null)
     })
     }, [exerciseOrder]);
+// REFRESH EVERY MINUTE
+    const MINUTE_MS = 10000;
+
+    useEffect(() => {
+    const interval = setInterval(() => {
+        showUser(currentUserId).then((result)=>{
+            setCurrentUser(result)
+        })
+        showUserBuySellActions(currentUserId).then((result)=>{
+            setBuySellActions(result)
+        })
+        showUserCallPutOptions(currentUserId).then((result)=>{
+            setCallPutOptions(result)
+        })
+    }, MINUTE_MS);
+
+    return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
+    }, [])
 
 
     return (
     <div>
-        <Profile currentUser={currentUser}/>
-        <StockSearch searchInput={searchInput} setSearchInput={setSearchInput} setSearchedTicker={setSearchedTicker}/>
-        <Stock foundStock={foundStock} user = {currentUser} orderTypeBuySell={orderTypeBuySell} setOrderTypeBuySell={setOrderTypeBuySell} orderTypeCallPut={orderTypeCallPut} setOrderTypeCallPut={setOrderTypeCallPut} setQuantityInput = {setQuantityInput} quantityInput={quantityInput} setSentBuySellOrder={setSentBuySellOrder} options={options} selectedOption={selectedOption} setSelectedOption={setSelectedOption} option={option} optionQuantityInput={optionQuantityInput} setOptionQuantityInput={setOptionQuantityInput} setSentOptionOrder={setSentOptionOrder}/>
-        <CallPutList callputOptions={callputOptions} setExerciseOrder={setExerciseOrder}/>
-        <BuySellList selectedUserBuySellActions={buySellActions} sellQuantityInput={sellQuantityInput} setSellQuantityInput={setSellQuantityInput} setSentSellOrder={setSentSellOrder} user={currentUser}/>
+        <Profile 
+            currentUser={currentUser}
+        />
+        <StockSearch 
+            searchInput={searchInput} 
+            setSearchInput={setSearchInput} 
+            setSearchedTicker={setSearchedTicker}
+        />
+        <Stock 
+            foundStock={foundStock} 
+            user = {currentUser} 
+            orderTypeBuySell={orderTypeBuySell} 
+            setOrderTypeBuySell={setOrderTypeBuySell} 
+            orderTypeCallPut={orderTypeCallPut} 
+            setOrderTypeCallPut={setOrderTypeCallPut} 
+            setQuantityInput = {setQuantityInput} 
+            quantityInput={quantityInput} 
+            setSentBuySellOrder={setSentBuySellOrder} 
+            options={options} 
+            selectedOption={selectedOption} 
+            setSelectedOption={setSelectedOption} 
+            option={option} 
+            optionQuantityInput={optionQuantityInput} 
+            setOptionQuantityInput={setOptionQuantityInput} 
+            setSentOptionOrder={setSentOptionOrder}
+        />
+        <CallPutList 
+            callputOptions={callputOptions} 
+            setExerciseOrder={setExerciseOrder}
+        />
+        <BuySellList selectedUserBuySellActions={buySellActions} 
+            sellQuantityInput={sellQuantityInput} 
+            setSellQuantityInput={setSellQuantityInput} 
+            setSentSellOrder={setSentSellOrder} 
+            user={currentUser}
+        />
     </div>
     );
     }
