@@ -616,3 +616,12 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   letter-spacing: 0.5px;
   margin-top: 20px;
 }
+
+.dashboard{
+  font-weight: 400;
+  overflow-x: hidden;
+  position: relative;
+  background-color: #ffffff !important;
+  color: rgb(0, 0, 0) !important;
+  font-family: 'Centra', sans-serif !important;
+}

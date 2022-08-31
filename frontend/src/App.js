@@ -17,8 +17,8 @@ function App() {
   <NavBar/>
   <Banner/>
   <Skills/>
-  <Projects/>
-  {/* <Dashboard/> */}
+  {/* <Projects/> */}
+  <Dashboard/>
   {/* <UserContainer/> */}
 </div>
   );

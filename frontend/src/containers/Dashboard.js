@@ -10,6 +10,8 @@ import Stock from '../components/Stock';
 import Profile from '../components/Profile';
 import CallPutList from '../components/CallPutList';
 
+
+
 function Dashboard() {
     const [isLoaded, setIsLoaded] = useState(false)
 
@@ -149,6 +151,7 @@ useEffect(()=>{
 
     return (
     <div>
+        <section section className="dashboard" id="dashboard">
         <Profile 
             currentUser={currentUser}
         />
@@ -187,7 +190,9 @@ useEffect(()=>{
             runnningTotal={runnningTotal}
             setRunningTotal={setRunningTotal}
         />
+        </section>
     </div>
+
     );
     }
 export default Dashboard;
