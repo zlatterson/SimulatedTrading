@@ -45,10 +45,6 @@ useEffect(()=>{
         setIsLoaded(true)
     }, []);
 
-    // Show user buy sell actions
-// useEffect(()=>{
-//     }, [isLoaded]);
-
     // Search Ticker
 useEffect(()=>{
     if(!isLoaded){
@@ -130,7 +126,7 @@ useEffect(()=>{
         setExerciseOrder(null)
     })
     }, [exerciseOrder]);
-// REFRESH EVERY MINUTE
+// Refresh service
     const MINUTE_MS = 10000;
 
     useEffect(() => {
