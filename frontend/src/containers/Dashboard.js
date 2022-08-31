@@ -9,6 +9,8 @@ import {showOptions,showOption, postCallPutOption, exerciseCallPutOption} from "
 import Stock from '../components/Stock';
 import Profile from '../components/Profile';
 import CallPutList from '../components/CallPutList';
+import { Container, Col, Row, Tab, Nav } from 'react-bootstrap';
+import colorSharp2 from "../assets/img/color-sharp2.png";
 
 
 
@@ -148,51 +150,62 @@ useEffect(()=>{
     return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
     }, [])
 
-
     return (
-    <div>
+        <div>
+                <section className="project" id="dashboard">
+      <Container>
+        <Row>
+        <Col size={12}>
+                <h2>Dashboard</h2>
+                <p>Here you can make trades.</p>
+                <Profile 
+                currentUser={currentUser}
+                />
+                <StockSearch 
+                searchInput={searchInput} 
+                setSearchInput={setSearchInput} 
+                setSearchedTicker={setSearchedTicker}
+                />
+          </Col>
+        </Row>
+      </Container>
+      <img className="background-image-right" src={colorSharp2}></img>
+    </section>
         <section section className="dashboard" id="dashboard">
-        <Profile 
-            currentUser={currentUser}
-        />
-        <StockSearch 
-            searchInput={searchInput} 
-            setSearchInput={setSearchInput} 
-            setSearchedTicker={setSearchedTicker}
-        />
-        <Stock 
-            foundStock={foundStock} 
-            user = {currentUser} 
-            orderTypeBuySell={orderTypeBuySell} 
-            setOrderTypeBuySell={setOrderTypeBuySell} 
-            orderTypeCallPut={orderTypeCallPut} 
-            setOrderTypeCallPut={setOrderTypeCallPut} 
-            setQuantityInput = {setQuantityInput} 
-            quantityInput={quantityInput} 
-            setSentBuySellOrder={setSentBuySellOrder} 
-            options={options} 
-            selectedOption={selectedOption} 
-            setSelectedOption={setSelectedOption} 
-            option={option} 
-            optionQuantityInput={optionQuantityInput} 
-            setOptionQuantityInput={setOptionQuantityInput} 
-            setSentOptionOrder={setSentOptionOrder}
-        />
-        <CallPutList 
-            callputOptions={callputOptions} 
-            setExerciseOrder={setExerciseOrder}
-        />
-        <BuySellList selectedUserBuySellActions={buySellActions} 
-            sellQuantityInput={sellQuantityInput} 
-            setSellQuantityInput={setSellQuantityInput} 
-            setSentSellOrder={setSentSellOrder} 
-            user={currentUser}
-            runnningTotal={runnningTotal}
-            setRunningTotal={setRunningTotal}
-        />
-        </section>
+            <Container>
+            <Stock 
+                foundStock={foundStock} 
+                user = {currentUser} 
+                orderTypeBuySell={orderTypeBuySell} 
+                setOrderTypeBuySell={setOrderTypeBuySell} 
+                orderTypeCallPut={orderTypeCallPut} 
+                setOrderTypeCallPut={setOrderTypeCallPut} 
+                setQuantityInput = {setQuantityInput} 
+                quantityInput={quantityInput} 
+                setSentBuySellOrder={setSentBuySellOrder} 
+                options={options} 
+                selectedOption={selectedOption} 
+                setSelectedOption={setSelectedOption} 
+                option={option} 
+                optionQuantityInput={optionQuantityInput} 
+                setOptionQuantityInput={setOptionQuantityInput} 
+                setSentOptionOrder={setSentOptionOrder}
+            />
+            <BuySellList selectedUserBuySellActions={buySellActions} 
+                sellQuantityInput={sellQuantityInput} 
+                setSellQuantityInput={setSellQuantityInput} 
+                setSentSellOrder={setSentSellOrder} 
+                user={currentUser}
+                runnningTotal={runnningTotal}
+                setRunningTotal={setRunningTotal}
+            />
+            <CallPutList 
+                callputOptions={callputOptions} 
+                setExerciseOrder={setExerciseOrder}
+            />
+        </Container>
+     </section>
     </div>
-
     );
     }
 export default Dashboard;

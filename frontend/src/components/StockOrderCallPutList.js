@@ -9,7 +9,7 @@ const StockOrderCallPutList = ({user, options, setSelectedOption}) => {
   return (
     <>
 
-    <table>
+    <table class="table table-striped text-center align-middle table-sm">
       <caption> Calls </caption>
       <tbody>
       <tr>

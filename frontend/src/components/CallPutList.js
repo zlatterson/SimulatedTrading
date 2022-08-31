@@ -11,20 +11,23 @@ const CallPutList = ({callputOptions, setExerciseOrder, viewOnly}) => {
     }
     return (
     <>
-    <table>
+    <div className='buy-sell-box'>
+    <h3>Options</h3>
+    <table class="table table-striped table-dark text-center align-middle table-sm">
       <tbody>
       <tr>
-        <th> Time </th>
         <th> Symbol </th>
+        <th> Time </th>
         <th> Type </th>
         <th> Description </th>
         <th> Value </th>
-        <th> Return </th>
+        <th> P/L </th>
         <th> Action </th>
       </tr>
       {userCallPutOptions}
       </tbody>
     </table>
+    </div>
     </>
     );
 }

@@ -9,8 +9,9 @@ const BuySellList = ({viewOnly, selectedUserBuySellActions, sellQuantityInput, s
         })
     }
     return (
-    <>
-    <table>
+    <div className='buy-sell-box'>
+    <h3>Positions</h3>
+    <table class="table table-striped table-dark text-center align-middle table-sm">
       <tbody>
       <tr>
         <th> Symbol </th>
@@ -18,7 +19,7 @@ const BuySellList = ({viewOnly, selectedUserBuySellActions, sellQuantityInput, s
         <th> Shares </th>
         <th> Value </th>
         <th> Return </th>
-        <th> Average Buy Price</th>
+        <th> Avg Price/Price</th>
         <th> Price/Share</th>
         <th> Sell </th>
       </tr>
@@ -26,7 +27,7 @@ const BuySellList = ({viewOnly, selectedUserBuySellActions, sellQuantityInput, s
       </tbody>
     </table>
 
-    </>
+    </div>
     
 
 

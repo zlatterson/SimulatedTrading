@@ -616,12 +616,55 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   letter-spacing: 0.5px;
   margin-top: 20px;
 }
+/* --- DASHBOARD ----- */
 
+/* .skill {
+  padding: 0 0 50px 0;
+  position: relative;
+}
+.skill-bx {
+  background: #151515;
+  border-radius: 64px;
+  text-align: center;
+  padding: 60px 50px;
+  margin-top: -60px;
+}
+.skill h2 {
+	font-size: 45px;
+	font-weight: 700;
+} */
 .dashboard{
+  /* text-align: center; */
+  padding: 0 0 50px 0;
+  position: relative;
   font-weight: 400;
   overflow-x: hidden;
   position: relative;
-  background-color: #ffffff !important;
-  color: rgb(0, 0, 0) !important;
+  background-color: #000000 !important;
+  color: #000000 !important;
   font-family: 'Centra', sans-serif !important;
+}
+.buy-sell-box{
+  color: #ffffff !important;
+  background: #000000;
+  border-radius: 0;
+  padding: 10px 50px;
+  font-size: 14px;
+}
+.form-color{
+  border: none;
+  background: rgba(0, 0, 0, 0);
+  color: #FFF;
+}
+.stock-search{
+  background-color: green;
+}
+.stock-container{
+  background: #151515;
+  border-radius: 64px;
+  text-align: center;
+  padding: 60px 50px;
+  margin-top: -60px;
+  background: #FFF;
+  color: rgb(0, 0, 0);
 }

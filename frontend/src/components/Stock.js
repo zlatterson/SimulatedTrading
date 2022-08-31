@@ -2,6 +2,7 @@ import React from 'react';
 import CallPutContract from './CallPutContract';
 import StockOrderBuySell from './StockOrderBuySell';
 import StockOrderCallPutList from './StockOrderCallPutList';
+import { Container } from 'react-bootstrap';
 
 const Stock = ({foundStock, user,setOrderTypeBuySell,orderTypeBuySell, setOrderTypeCallPut, orderTypeCallPut, quantityInput, setQuantityInput, setSentBuySellOrder, options, setSelectedOption, selectedOption, option, optionQuantityInput, setOptionQuantityInput, setSentOptionOrder}) => {
     const handleBuySellOrder = (e) => {
@@ -18,12 +19,13 @@ const Stock = ({foundStock, user,setOrderTypeBuySell,orderTypeBuySell, setOrderT
       }
 
     return (
-        <div>
+        <Container>
+        <div className='stock-container'>
         {foundStock !== null ? 
             <div>
                 <h1>{foundStock.ticker}</h1>
                 <p>{foundStock.summary}</p>
-                <button onClick={handleBuySellOrder} value="Market Order">
+                <button class="table table-striped table-dark text-center align-middle table-sm"onClick={handleBuySellOrder} value="Market Order">
                     Market Order
                 </button>
                 <button onClick={handleCallPutOrder} value="Call Put Contract">
@@ -45,6 +47,7 @@ const Stock = ({foundStock, user,setOrderTypeBuySell,orderTypeBuySell, setOrderT
             </div>
         : <></>}
         </div>
+        </Container>
     );
 }
 
