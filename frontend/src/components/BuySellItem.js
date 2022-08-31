@@ -24,6 +24,7 @@ const BuySellItem = ({viewOnly, buySellAction, sellQuantityInput, setSellQuantit
   return (
 <li>
 {buySellAction.buy_sell_type} {buySellAction.quantity} {buySellAction.stock.ticker} @ ${buySellAction.average_price.toFixed(2)} {buySellAction.score.toFixed(2)}%
+  <p>Current price: ${buySellAction.stock._current_price.toFixed(2)} Profit: ${((buySellAction.stock._current_price - buySellAction.average_price)* buySellAction.quantity).toFixed(2)}</p>
   {viewOnly === true ?
      <></>
      : <>

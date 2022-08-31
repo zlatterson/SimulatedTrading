@@ -40,6 +40,7 @@ function Dashboard() {
     const [callputOptions, setCallPutOptions] = useState([])
     const [exerciseOrder, setExerciseOrder] = useState(null)
 
+    const [runnningTotal, setRunningTotal] = useState(0)
 useEffect(()=>{
         setIsLoaded(true)
     }, []);
@@ -134,6 +135,7 @@ useEffect(()=>{
 
     useEffect(() => {
     const interval = setInterval(() => {
+        console.log("refreshed")
         showUser(currentUserId).then((result)=>{
             setCurrentUser(result)
         })
@@ -186,6 +188,8 @@ useEffect(()=>{
             setSellQuantityInput={setSellQuantityInput} 
             setSentSellOrder={setSentSellOrder} 
             user={currentUser}
+            runnningTotal={runnningTotal}
+            setRunningTotal={setRunningTotal}
         />
     </div>
     );
