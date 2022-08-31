@@ -9,7 +9,27 @@ const BuySellList = ({viewOnly, selectedUserBuySellActions, sellQuantityInput, s
         })
     }
     return (
-    <ul>{userBuySellActions}</ul>
+    <>
+    <table>
+      <tbody>
+      <tr>
+        <th> Symbol </th>
+        <th> Type </th>
+        <th> Shares </th>
+        <th> Value </th>
+        <th> Return </th>
+        <th> Average Buy Price</th>
+        <th> Price/Share</th>
+        <th> Sell </th>
+      </tr>
+      {userBuySellActions}
+      </tbody>
+    </table>
+
+    </>
+    
+
+
     );
 }
 

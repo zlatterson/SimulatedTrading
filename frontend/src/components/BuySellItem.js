@@ -22,21 +22,23 @@ const BuySellItem = ({viewOnly, buySellAction, sellQuantityInput, setSellQuantit
   }
 
   return (
-<li>
-{buySellAction.buy_sell_type} {buySellAction.quantity} {buySellAction.stock.ticker} @ ${buySellAction.average_price.toFixed(2)} {buySellAction.score.toFixed(2)}%
-  <p>Current price: ${buySellAction.stock._current_price.toFixed(2)} Profit: ${((buySellAction.stock._current_price - buySellAction.average_price)* buySellAction.quantity).toFixed(2)}</p>
-  {viewOnly === true ?
-     <></>
-     : <>
+    <>
+<tr>
+<td>{buySellAction.stock.ticker}</td>
+<td>{buySellAction.buy_sell_type}</td>
+<td>{buySellAction.quantity}</td>
+<td>${(buySellAction.stock._current_price * buySellAction.quantity).toFixed(2)}</td>
+<td>${((buySellAction.stock._current_price - buySellAction.average_price)* buySellAction.quantity).toFixed(2)} ({buySellAction.score.toFixed(2)})%</td>
+<td>{buySellAction.average_price.toFixed(2)}</td>
+<td>{buySellAction.stock._current_price.toFixed(2)}</td>
+<td> 
   <form onSubmit={newSubmit}>
   <input type="number" min="1" max={buySellAction.quantity} onChange={handleSearchInput} placeholder="Quantity..."></input>
   <input type="submit" value="Sell" />
   </form>
-     </>
-  }
-  <h5>{buySellAction.last_action}</h5>
-
-</li>
+</td>
+</tr>
+</>
   );
 }
 

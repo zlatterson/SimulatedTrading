@@ -10,7 +10,22 @@ const CallPutList = ({callputOptions, setExerciseOrder, viewOnly}) => {
         })
     }
     return (
-    <ul>{userCallPutOptions}</ul>
+    <>
+    <table>
+      <tbody>
+      <tr>
+        <th> Time </th>
+        <th> Symbol </th>
+        <th> Type </th>
+        <th> Description </th>
+        <th> Value </th>
+        <th> Return </th>
+        <th> Action </th>
+      </tr>
+      {userCallPutOptions}
+      </tbody>
+    </table>
+    </>
     );
 }
 
