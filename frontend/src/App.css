@@ -646,7 +646,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 .buy-sell-box{
   color: #ffffff !important;
-  background: #000000;
+  background: #00000000;
   border-radius: 0;
   padding: 10px 50px;
   font-size: 14px;
@@ -665,6 +665,13 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   text-align: center;
   padding: 60px 50px;
   margin-top: -60px;
-  background: #FFF;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+}
+
+.buy-sell-box2{
+  color: #000000 !important;
+  background: #ffffff;
+  border-radius: 0;
+  padding: 10px 50px;
+  font-size: 14px;
 }

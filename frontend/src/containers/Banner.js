@@ -5,7 +5,7 @@ import headerImg from "../assets/img/header.png";
 const Banner = () => {
     const [loopNum, setLoopNum] = useState(0)
     const [isDeleting, setIsDeleting] = useState(false)
-    const toRotate = ["Buying TSLA", "Selling GOOGL", "SPY Calls", "Big Yield"]
+    const toRotate = ["Hit Bids", "Kill or Fill", "Pro-Forma Cowboy", "Sell GOOGL", "SPY Calls", "Big Yield", "Close Deals"]
     const [text, setText] = useState('')
     const [delta, setDelta] = useState(300 - Math.random() * 100);
     const [index, setIndex] = useState(1);
@@ -48,10 +48,10 @@ const Banner = () => {
             <Container>
                 <Row className="align-items-center">
                     <Col xs={12} md={6} xl={7}>
-                        <span className='tagline'>Welcome to my Simulated Trading</span>
-                        <h1>{`@Adam120 `}<span className='wrap'>{text}</span></h1>
-                        <p>In this tutorial, we build a personal portfolio website using React and Animate CSS. Follow along and share what you build in the comments!</p>
-                        <button onClick={() => console.log("connect")}> Let's connect<ArrowRightCircle size={25}/></button>
+                        <span className='tagline'>Welcome to Simulated Trading</span>
+                        <h1>{`You `}<span className='wrap'>{text}</span></h1>
+                        <p>This app allows you to play the stock market as a game. Built with a python API and a React frontend. </p>
+                        <button onClick={() => console.log("connect")}> Let's make an account.<ArrowRightCircle size={25}/></button>
                     </Col>
                     <Col xs={12} md={6} xl={7}>
                         <img src={headerImg} alt="header img"/>

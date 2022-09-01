@@ -7,8 +7,8 @@ const StockOrderCallPutList = ({user, options, setSelectedOption}) => {
         return <StockOrderCallPutItem user={user} key={index} option={option} setSelectedOption={setSelectedOption}/>
     })
   return (
-    <>
 
+  <div className='buy-sell-box2'>
     <table class="table table-striped text-center align-middle table-sm">
       <caption> Calls </caption>
       <tbody>
@@ -23,8 +23,8 @@ const StockOrderCallPutList = ({user, options, setSelectedOption}) => {
       {optionNodes}
       </tbody>
     </table>
-
-    </>
+    </div>
+ 
   );
 
 }

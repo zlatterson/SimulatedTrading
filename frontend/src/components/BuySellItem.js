@@ -32,11 +32,16 @@ const BuySellItem = ({viewOnly, buySellAction, sellQuantityInput, setSellQuantit
 <td style={{color: ((buySellAction.stock._current_price - buySellAction.average_price)* buySellAction.quantity) >= 0 ? "green" : "red"}}>${((buySellAction.stock._current_price - buySellAction.average_price)* buySellAction.quantity).toFixed(2)} ({buySellAction.score.toFixed(2)})%</td>
 <td>{buySellAction.average_price.toFixed(2)}</td>
 <td>{buySellAction.stock._current_price.toFixed(2)}</td>
-<td> 
+<td>
+{viewOnly === true ?
+     <></>
+     : <>
   <form onSubmit={newSubmit}>
   <input className="form-color" type="number" min="1" max={buySellAction.quantity} onChange={handleSearchInput} placeholder="ALL"></input>
   <input type="submit" value="Sell" class="btn btn-success"/>
   </form>
+     </>
+  }
 </td>
 </tr>
 </>

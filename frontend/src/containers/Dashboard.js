@@ -17,7 +17,7 @@ import colorSharp2 from "../assets/img/color-sharp2.png";
 function Dashboard() {
     const [isLoaded, setIsLoaded] = useState(false)
 
-    const [currentUserId, setCurrentUserId] = useState(1)
+    const [currentUserId, setCurrentUserId] = useState(4)
     const [currentUser, setCurrentUser] = useState(null)
     const [buySellActions, setBuySellActions] = useState([])
 
@@ -131,7 +131,7 @@ useEffect(()=>{
     })
     }, [exerciseOrder]);
 // Refresh service
-    const MINUTE_MS = 10000;
+    const MINUTE_MS = 12000;
 
     useEffect(() => {
     const interval = setInterval(() => {

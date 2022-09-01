@@ -11,11 +11,12 @@ const UserItem = ({user,viewOnly,setSelectedUserId,selectedUserBuySellActions, s
 
     return (
     <li>
-        <h3 onClick={handleClick}>@{user.username} {user.name} ${user.money}</h3>
+        <h3 onClick={handleClick}>@{user.username}</h3>
         {user.id === selectedUserId ? 
         <div>
-        <CallPutList viewOnly={viewOnly} callputOptions={callputOptions}/>
         <BuySellList viewOnly={viewOnly} selectedUserBuySellActions={selectedUserBuySellActions} sellQuantityInput={sellQuantityInput} setSellQuantityInput={setSellQuantityInput} setSentSellOrder={setSentSellOrder} user={user}/> 
+        <CallPutList viewOnly={viewOnly} callputOptions={callputOptions}/>
+
         </div>
         : <></>}
     </li>

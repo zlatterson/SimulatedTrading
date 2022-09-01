@@ -20,7 +20,7 @@ const CallPutContract = ({ contract, user, option, optionQuantityInput, setOptio
             <p>cost: ${(optionQuantityInput * option.call_price * 100).toFixed(2)}</p>
                 <form onSubmit={newSubmit}>
                 <input type="number" min="1" max={((user.money / orderPrice).toFixed(0)) - 1} onChange={handleSearchInput} placeholder="Quantity..."></input>
-                <input type="submit" value="Order" />
+                <input type="submit" value="Order" class="btn btn-warning" />
                 </form>
         </div>
         

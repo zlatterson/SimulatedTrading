@@ -17,9 +17,14 @@ const CallPutItem = ({viewOnly, option,setExerciseOrder}) => {
         <td>${((option.bought_contracts_value * option.n_contracts)-(currentContractValue * option.n_contracts)).toFixed(2)}</td>
         <td>${(currentContractValue * option.n_contracts).toFixed(2)} ({((currentContractValue / (option.bought_c_price * 100)) * 100).toFixed(2)}%)</td>
         <td>
+        {viewOnly === true ?
+        <></>
+        : <>
         <form onSubmit={newSubmit}>
-        <input type="submit" value="Exercise" class="btn btn-success" />
+        <input type="submit" value="Exercise" class="btn btn-success"/>
         </form>
+        </>
+        }
         </td>
         </tr>
         

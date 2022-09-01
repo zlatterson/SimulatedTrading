@@ -6,9 +6,7 @@ const Profile = ({currentUser}) => {
         <div>
         {currentUser !== null ? 
             <div>
-                <p>{currentUser.username}</p>
-                <p>Starting Cash: ${currentUser.money_paid_in.toFixed(2)}</p>
-                <p>Settled Cash: ${currentUser.money.toFixed(2)}</p>
+                <p>{currentUser.username}<br></br>Starting Cash: ${currentUser.money_paid_in.toFixed(2)}<br></br>Settled Cash: ${currentUser.money.toFixed(2)}</p>
             </div>
         : <></>}
         </div>

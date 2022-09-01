@@ -25,10 +25,10 @@ const Stock = ({foundStock, user,setOrderTypeBuySell,orderTypeBuySell, setOrderT
             <div>
                 <h1>{foundStock.ticker}</h1>
                 <p>{foundStock.summary}</p>
-                <button class="table table-striped table-dark text-center align-middle table-sm"onClick={handleBuySellOrder} value="Market Order">
+                <button onClick={handleBuySellOrder} value="Market Order" class="btn btn-primary">
                     Market Order
                 </button>
-                <button onClick={handleCallPutOrder} value="Call Put Contract">
+                <button onClick={handleCallPutOrder} value="Call Put Contract" class="btn btn-primary">
                     Call Put Contract
                 </button>
                 {orderTypeBuySell === true ?
