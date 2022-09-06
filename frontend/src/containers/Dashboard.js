@@ -1,7 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import BuySellList from '../components/BuySellList';
 import StockSearch from '../components/StockSearch';
-import UserList from '../components/UserList';
 import {showUserBuySellActions, showUser, showUserCallPutOptions} from "../services/UserService";
 import {searchStockByTicker} from "../services/StockService";
 import {postBuySellAction} from "../services/BuySellActionService";
@@ -17,7 +16,7 @@ import colorSharp2 from "../assets/img/color-sharp2.png";
 function Dashboard() {
     const [isLoaded, setIsLoaded] = useState(false)
 
-    const [currentUserId, setCurrentUserId] = useState(4)
+    const [currentUserId, setCurrentUserId] = useState(1)
     const [currentUser, setCurrentUser] = useState(null)
     const [buySellActions, setBuySellActions] = useState([])
 

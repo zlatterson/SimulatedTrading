@@ -10,7 +10,7 @@ import React,{useState, useEffect} from 'react';
 import UserList from '../components/UserList';
 import {showUsers, showUser, showUserBuySellActions, showUserCallPutOptions} from "../services/UserService";
 
-const Skills = ({}) => {
+const Users = ({}) => {
     const [isLoaded, setIsLoaded] = useState(false)
     const [users, setUsers] = useState([])
   
@@ -80,4 +80,4 @@ const Skills = ({}) => {
       );
 }
 
-export default Skills;
+export default Users;

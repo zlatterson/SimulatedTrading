@@ -6,8 +6,7 @@ import NavBar from './containers/NavBar';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Banner from './containers/Banner';
-import Skills from './containers/Skills';
-import { Projects } from './containers/Projects';
+import Users from './containers/Users';
 
 
 function App() {
@@ -16,10 +15,8 @@ function App() {
 <div className="App">
   <NavBar/>
   <Banner/>
-  <Skills/>
-  {/* <Projects/> */}
+  <Users/>
   <Dashboard/>
-  {/* <UserContainer/> */}
 </div>
   );
 }

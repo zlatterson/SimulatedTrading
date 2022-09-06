@@ -13,8 +13,11 @@ import repositories.buy_sell_action_repository as buy_sell_action_repository
 import repositories.call_put_contract_repository as call_put_contract_repository
 import repositories.call_put_option_repository as call_put_option_repository
 
-user = User("Dartboard1","Dartboard1",100000,100000)
-user_repository.save(user)
+# user = User("Medo","Medo",100000,100000)
+# user_repository.save(user)
 
-user2 = User("Test_Account","Test_Account1",100000,100000)
-user_repository.save(user2)
+# user2 = User("Test_Account","Test_Account1",100000,100000)
+# user_repository.save(user2)
+
+stock = StockService.find_stock_price("RBLX")
+print(stock)
