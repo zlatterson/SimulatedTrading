@@ -1,9 +1,9 @@
 # SimualtedTrading API
 Solo Capstone CodeClan project. 
 
-Start Date: 23/08/2022
+Start Date: 18/08/2022
 
-Finish Date: On-going (Presented 03/09/2022)
+Finish Date: On-going (Presented 01/09/2022)
 
 Bread - A web app that allows you to model trading strategies in a simulated environment. By use of an inbuilt API that will search live stock prices, and persist positions.
 # Demonstration
