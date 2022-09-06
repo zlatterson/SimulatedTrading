@@ -1,7 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import BuySellList from '../components/BuySellList';
 import StockSearch from '../components/StockSearch';
-import UserList from '../components/UserList';
 import {showUserBuySellActions, showUser, showUserCallPutOptions} from "../services/UserService";
 import {searchStockByTicker} from "../services/StockService";
 import {postBuySellAction} from "../services/BuySellActionService";
@@ -9,6 +8,10 @@ import {showOptions,showOption, postCallPutOption, exerciseCallPutOption} from "
 import Stock from '../components/Stock';
 import Profile from '../components/Profile';
 import CallPutList from '../components/CallPutList';
+import { Container, Col, Row, Tab, Nav } from 'react-bootstrap';
+import colorSharp2 from "../assets/img/color-sharp2.png";
+
+
 
 function Dashboard() {
     const [isLoaded, setIsLoaded] = useState(false)
@@ -40,13 +43,10 @@ function Dashboard() {
     const [callputOptions, setCallPutOptions] = useState([])
     const [exerciseOrder, setExerciseOrder] = useState(null)
 
+    const [runnningTotal, setRunningTotal] = useState(0)
 useEffect(()=>{
         setIsLoaded(true)
     }, []);
-
-    // Show user buy sell actions
-// useEffect(()=>{
-//     }, [isLoaded]);
 
     // Search Ticker
 useEffect(()=>{
@@ -129,11 +129,12 @@ useEffect(()=>{
         setExerciseOrder(null)
     })
     }, [exerciseOrder]);
-// REFRESH EVERY MINUTE
-    const MINUTE_MS = 10000;
+// Refresh service
+    const MINUTE_MS = 12000;
 
     useEffect(() => {
     const interval = setInterval(() => {
+        console.log("refreshed")
         showUser(currentUserId).then((result)=>{
             setCurrentUser(result)
         })
@@ -148,45 +149,61 @@ useEffect(()=>{
     return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
     }, [])
 
-
     return (
-    <div>
-        <Profile 
-            currentUser={currentUser}
-        />
-        <StockSearch 
-            searchInput={searchInput} 
-            setSearchInput={setSearchInput} 
-            setSearchedTicker={setSearchedTicker}
-        />
-        <Stock 
-            foundStock={foundStock} 
-            user = {currentUser} 
-            orderTypeBuySell={orderTypeBuySell} 
-            setOrderTypeBuySell={setOrderTypeBuySell} 
-            orderTypeCallPut={orderTypeCallPut} 
-            setOrderTypeCallPut={setOrderTypeCallPut} 
-            setQuantityInput = {setQuantityInput} 
-            quantityInput={quantityInput} 
-            setSentBuySellOrder={setSentBuySellOrder} 
-            options={options} 
-            selectedOption={selectedOption} 
-            setSelectedOption={setSelectedOption} 
-            option={option} 
-            optionQuantityInput={optionQuantityInput} 
-            setOptionQuantityInput={setOptionQuantityInput} 
-            setSentOptionOrder={setSentOptionOrder}
-        />
-        <CallPutList 
-            callputOptions={callputOptions} 
-            setExerciseOrder={setExerciseOrder}
-        />
-        <BuySellList selectedUserBuySellActions={buySellActions} 
-            sellQuantityInput={sellQuantityInput} 
-            setSellQuantityInput={setSellQuantityInput} 
-            setSentSellOrder={setSentSellOrder} 
-            user={currentUser}
-        />
+        <div>
+                <section className="project" id="dashboard">
+      <Container>
+        <Row>
+        <Col size={12}>
+                <h2>Dashboard</h2>
+                <p>Here you can make trades.</p>
+                <Profile 
+                currentUser={currentUser}
+                />
+                <StockSearch 
+                searchInput={searchInput} 
+                setSearchInput={setSearchInput} 
+                setSearchedTicker={setSearchedTicker}
+                />
+          </Col>
+        </Row>
+      </Container>
+      <img className="background-image-right" src={colorSharp2}></img>
+    </section>
+        <section section className="dashboard" id="dashboard">
+            <Container>
+            <Stock 
+                foundStock={foundStock} 
+                user = {currentUser} 
+                orderTypeBuySell={orderTypeBuySell} 
+                setOrderTypeBuySell={setOrderTypeBuySell} 
+                orderTypeCallPut={orderTypeCallPut} 
+                setOrderTypeCallPut={setOrderTypeCallPut} 
+                setQuantityInput = {setQuantityInput} 
+                quantityInput={quantityInput} 
+                setSentBuySellOrder={setSentBuySellOrder} 
+                options={options} 
+                selectedOption={selectedOption} 
+                setSelectedOption={setSelectedOption} 
+                option={option} 
+                optionQuantityInput={optionQuantityInput} 
+                setOptionQuantityInput={setOptionQuantityInput} 
+                setSentOptionOrder={setSentOptionOrder}
+            />
+            <BuySellList selectedUserBuySellActions={buySellActions} 
+                sellQuantityInput={sellQuantityInput} 
+                setSellQuantityInput={setSellQuantityInput} 
+                setSentSellOrder={setSentSellOrder} 
+                user={currentUser}
+                runnningTotal={runnningTotal}
+                setRunningTotal={setRunningTotal}
+            />
+            <CallPutList 
+                callputOptions={callputOptions} 
+                setExerciseOrder={setExerciseOrder}
+            />
+        </Container>
+     </section>
     </div>
     );
     }

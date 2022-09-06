@@ -6,9 +6,3 @@ class User:
         self.money = money
         self.currency = "USD"
         self.id = id
-
-
-    # @property 
-    # def money_available(self):
-    #     profit = self.money_paid_in - self.money
-    #     return self.money + self.money_paid_in

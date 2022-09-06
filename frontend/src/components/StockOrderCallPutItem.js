@@ -8,9 +8,14 @@ const StockOrderCallPutItem = ({option,setSelectedOption, user}) => {
     }
 
     return (
-    <h5>
-    <li onClick={handleClick}> Bid: {option["Bid"]} | Ask: {option["Ask"]}| IV:{option["Implied Volatility"]} | % Change:{option["% Change"]} | {option["Contract Name"]}</li>
-    </h5>
+    <tr onClick={handleClick}>
+      <td>{option["Bid"]}</td>
+      <td>{option["Ask"]}</td>
+      <td>{option["Change"]}</td>
+      <td>{option["Volume"]}</td>
+      <td>{option["Implied Volatility"]}</td>
+      <td>{option["Strike"]}</td>
+    </tr>
   );
 
 }

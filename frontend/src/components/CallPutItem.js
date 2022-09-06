@@ -8,20 +8,27 @@ const CallPutItem = ({viewOnly, option,setExerciseOrder}) => {
         setExerciseOrder(objectToSend)
     }
     return (
-        <li>
-            {option.buy_sell_type} {option.n_contracts} {option.call_put_contract.stock.ticker} {option.call_put_contract.call_put_type} @{option.bought_c_price.toFixed(2)}
-        <p>Cost: ${(option.bought_contracts_value * option.n_contracts).toFixed(2)} Exercise for: ${((option.bought_contracts_value * option.n_contracts)-(currentContractValue * option.n_contracts)).toFixed(2)} (${(currentContractValue * option.n_contracts).toFixed(2)}) Running P/L:{((currentContractValue / (option.bought_c_price * 100)) * 100).toFixed(2)}%</p>
+        <>
+        <tr>
+        <td>{option.call_put_contract.stock.ticker} {option.call_put_contract.call_put_type}</td>
+        <td>{option.timestamp.split(' ')[0]}</td>
+        <td>Trade</td>
+        <td style={{color: currentContractValue * option.n_contracts > 0 ? "green" : "red"}}>{option.buy_sell_type} {option.n_contracts} {option.call_put_contract.expires} {option.call_put_contract.k} {option.call_put_contract.call_put_type} @ {option.bought_c_price.toFixed(2)} </td>
+        <td>${((option.bought_contracts_value * option.n_contracts)-(currentContractValue * option.n_contracts)).toFixed(2)}</td>
+        <td>${(currentContractValue * option.n_contracts).toFixed(2)} ({((currentContractValue / (option.bought_c_price * 100)) * 100).toFixed(2)}%)</td>
+        <td>
         {viewOnly === true ?
         <></>
         : <>
         <form onSubmit={newSubmit}>
-        <input type="submit" value="Exercise" />
+        <input type="submit" value="Exercise" class="btn btn-success"/>
         </form>
         </>
         }
-        <h5>{option.timestamp} . Expires: {option.call_put_contract.expires}</h5>
-        </li>
+        </td>
+        </tr>
         
+        </>
     );
 }
 

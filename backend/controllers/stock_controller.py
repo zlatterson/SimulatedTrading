@@ -33,15 +33,15 @@ def show_stock(id):
 @stocks_blueprint.route("/stocks/search/<ticker>")
 def show_stock_by_ticker(ticker):
     ticker = ticker.upper()
+    print("ticker is ",ticker)
     try:
         res = stock_repository.select_by_ticker(ticker)
     except IndexError:
-        try:
-            new_stock = StockService.make_stock(ticker)
-            stock_repository.save(new_stock)
-            res = stock_repository.select_by_ticker(ticker)
-        except:
-            return
+        new_stock = StockService.make_stock(ticker)
+        new_stock.fetch_price()
+        new_stock._current_price = float(res._current_price)
+        stock_repository.save(new_stock)
+        res = stock_repository.select_by_ticker(ticker)
     res.fetch_price()
     res._current_price = float(res._current_price)
     stock = jsonpickle.encode(res)
