@@ -18,8 +18,8 @@ Bread - A web app that allows you to model trading strategies in a simulated env
 
 
 ## Brief
-Create a restful API from scratch using Java Spring and implement in a front end web application using React which will allow the users to view the formatted data and get access to the open API for their own usage. 
-The theme of the API/Application will be recipes for drinks.
+Create a restful API from scratch using Python and implement in a front end web application using React which will allow the users to view the formatted data and get access to the open API for their own usage. 
+
 ### MVP
 For the MVP the user should be able to:
 - Have a starting amount of cash
